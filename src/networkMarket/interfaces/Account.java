@@ -1,4 +1,4 @@
-package networkMarket.bank.interfaces;
+package networkMarket.interfaces;
 
 import networkMarket.bank.exceptions.RejectedException;
 

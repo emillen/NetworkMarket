@@ -1,7 +1,6 @@
 package networkMarket.bank;
 
-import networkMarket.bank.interfaces.Bank;
-import networkMarket.bank.servants.BankServant;
+import networkMarket.interfaces.Bank;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;

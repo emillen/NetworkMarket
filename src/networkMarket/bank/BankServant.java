@@ -1,8 +1,8 @@
-package networkMarket.bank.servants;
+package networkMarket.bank;
 
 import networkMarket.bank.exceptions.RejectedException;
-import networkMarket.bank.interfaces.Account;
-import networkMarket.bank.interfaces.Bank;
+import networkMarket.interfaces.Account;
+import networkMarket.interfaces.Bank;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

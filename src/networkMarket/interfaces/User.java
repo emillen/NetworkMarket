@@ -1,4 +1,4 @@
-package networkMarket.marketPlace.interfaces;
+package networkMarket.interfaces;
 
 import java.rmi.Remote;
 
