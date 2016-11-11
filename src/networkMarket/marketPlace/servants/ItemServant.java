@@ -11,10 +11,12 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class ItemServant extends UnicastRemoteObject implements Item {
 
+    private String name;
+    private int price;
 
-
-    public ItemServant() throws RemoteException{
-
+    public ItemServant(String name, int price) throws RemoteException {
+        this.name = name;
+        this.price = price;
     }
 
     @Override
