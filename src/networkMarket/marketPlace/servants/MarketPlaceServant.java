@@ -1,7 +1,8 @@
-package networkMarket.server.servants;
+package networkMarket.marketPlace.servants;
 
 import networkMarket.marketPlace.interfaces.Item;
 import networkMarket.marketPlace.interfaces.MarketPlace;
+import networkMarket.marketPlace.servants.ItemServant;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
