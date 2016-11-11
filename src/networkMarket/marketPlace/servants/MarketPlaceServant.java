@@ -5,18 +5,24 @@ import networkMarket.marketPlace.interfaces.MarketPlace;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by daseel on 2016-11-11.
  */
 public class MarketPlaceServant extends UnicastRemoteObject implements MarketPlace{
+
+    HashMap<String, Item> items;
+
     public MarketPlaceServant() throws RemoteException{
 
+        items = new HashMap<>();
     }
 
     @Override
-    public Item[] getItems() throws RemoteException {
-        return new Item[0];
+    public List<Item> getItems() throws RemoteException {
+        return null;
     }
 
     @Override
