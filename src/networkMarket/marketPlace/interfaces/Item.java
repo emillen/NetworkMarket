@@ -8,9 +8,9 @@ import java.rmi.RemoteException;
  */
 public interface Item extends Remote {
 
-    int getPrice() throws RemoteException;
+    double getPrice() throws RemoteException;
 
-    int getName() throws RemoteException;
+    String getName() throws RemoteException;
 
     User seller() throws RemoteException;
 }
