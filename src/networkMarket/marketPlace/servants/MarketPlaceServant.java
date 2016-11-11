@@ -6,7 +6,6 @@ import networkMarket.marketPlace.interfaces.MarketPlace;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
