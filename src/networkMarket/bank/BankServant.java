@@ -10,11 +10,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SuppressWarnings("serial")
-public class BankServant extends UnicastRemoteObject implements Bank {
+class BankServant extends UnicastRemoteObject implements Bank {
     private String bankName;
     private Map<String, Account> accounts = new HashMap<>();
 
-    public BankServant(String bankName) throws RemoteException {
+    BankServant(String bankName) throws RemoteException {
         super();
         this.bankName = bankName;
     }
