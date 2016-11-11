@@ -11,11 +11,11 @@ import java.util.List;
 /**
  * Created by daseel on 2016-11-11.
  */
-public class MarketPlaceServant extends UnicastRemoteObject implements MarketPlace {
+class MarketPlaceServant extends UnicastRemoteObject implements MarketPlace {
 
     List<Item> items;
 
-    public MarketPlaceServant() throws RemoteException {
+    MarketPlaceServant() throws RemoteException {
 
         items = new ArrayList<>();
     }
