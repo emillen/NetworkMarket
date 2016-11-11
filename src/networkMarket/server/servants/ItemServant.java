@@ -1,4 +1,4 @@
-package networkMarket.marketPlace.servants;
+package networkMarket.server.servants;
 
 import networkMarket.marketPlace.interfaces.Item;
 import networkMarket.marketPlace.interfaces.User;
