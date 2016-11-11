@@ -14,21 +14,22 @@ import java.util.List;
  */
 public class MarketPlaceServant extends UnicastRemoteObject implements MarketPlace {
 
-    HashMap<String, Item> items;
+    List<Item> items;
 
     public MarketPlaceServant() throws RemoteException {
 
-        items = new HashMap<>();
+        items = new ArrayList<>();
     }
 
     @Override
     public List<Item> getItems() throws RemoteException {
-        return new ArrayList<>(items.values());
+        return items;
     }
 
     @Override
     public void addItem(String name, double price) throws RemoteException{
 
 
+        items.add(new ItemServant(name, price));
     }
 }
