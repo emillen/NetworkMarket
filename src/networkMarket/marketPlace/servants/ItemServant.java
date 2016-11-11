@@ -21,12 +21,12 @@ public class ItemServant extends UnicastRemoteObject implements Item {
 
     @Override
     public synchronized double getPrice() throws RemoteException {
-        return 0;
+        return price;
     }
 
     @Override
     public synchronized String getName() throws RemoteException {
-        return null;
+        return name;
     }
 
     @Override
