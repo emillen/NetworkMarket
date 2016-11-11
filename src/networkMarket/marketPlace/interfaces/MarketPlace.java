@@ -11,5 +11,5 @@ public interface MarketPlace extends Remote {
 
     List<Item> getItems() throws RemoteException;
 
-    void addItem(String name, double price);
+    void addItem(String name, double price) throws RemoteException;
 }
