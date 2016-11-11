@@ -1,4 +1,7 @@
-package networkMarket.marketPlace;
+package networkMarket.marketPlace.servants;
+
+import networkMarket.marketPlace.interfaces.Item;
+import networkMarket.marketPlace.interfaces.User;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -6,12 +9,12 @@ import java.rmi.server.UnicastRemoteObject;
 /**
  * Created by daseel on 2016-11-11.
  */
-public class ItemImpl extends UnicastRemoteObject implements Item{
+public class ItemServant extends UnicastRemoteObject implements Item {
 
 
 
-    public ItemImpl() throws RemoteException{
-        
+    public ItemServant() throws RemoteException{
+
     }
 
     @Override
