@@ -23,7 +23,7 @@ public class MarketPlaceServant extends UnicastRemoteObject implements MarketPla
 
     @Override
     public List<Item> getItems() throws RemoteException {
-        return null;
+        return new ArrayList<>(items.values());
     }
 
     @Override
