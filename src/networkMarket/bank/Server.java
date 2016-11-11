@@ -1,4 +1,4 @@
-package se.kth.id2212.ex2.bankrmi;
+package networkMarket.bank;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
