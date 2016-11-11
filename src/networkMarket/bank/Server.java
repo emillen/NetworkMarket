@@ -1,5 +1,8 @@
 package networkMarket.bank;
 
+import networkMarket.bank.interfaces.Bank;
+import networkMarket.bank.servants.BankServant;
+
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -10,7 +13,7 @@ public class Server {
 
     public Server(String bankName) {
         try {
-            Bank bankobj = new BankImpl(bankName);
+            Bank bankobj = new BankServant(bankName);
             // Register the newly created object at rmiregistry.
             try {
                 LocateRegistry.getRegistry(1099).list();

@@ -1,4 +1,8 @@
-package networkMarket.bank;
+package networkMarket.bank.servants;
+
+import networkMarket.bank.exceptions.RejectedException;
+import networkMarket.bank.interfaces.Account;
+import networkMarket.bank.interfaces.Bank;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -6,11 +10,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SuppressWarnings("serial")
-public class BankImpl extends UnicastRemoteObject implements Bank {
+public class BankServant extends UnicastRemoteObject implements Bank {
     private String bankName;
     private Map<String, Account> accounts = new HashMap<>();
 
-    public BankImpl(String bankName) throws RemoteException {
+    public BankServant(String bankName) throws RemoteException {
         super();
         this.bankName = bankName;
     }
@@ -22,14 +26,14 @@ public class BankImpl extends UnicastRemoteObject implements Bank {
 
     @Override
     public synchronized Account newAccount(String name) throws RemoteException,
-                                                               RejectedException {
-        AccountImpl account = (AccountImpl) accounts.get(name);
+            RejectedException {
+        AccountServant account = (AccountServant) accounts.get(name);
         if (account != null) {
             System.out.println("Account [" + name + "] exists!!!");
             throw new RejectedException("Rejected: se.kth.id2212.ex2.Bank: " + bankName
                                         + " Account for: " + name + " already exists: " + account);
         }
-        account = new AccountImpl(name);
+        account = new AccountServant(name);
         accounts.put(name, account);
         System.out.println("se.kth.id2212.ex2.Bank: " + bankName + " Account: " + account
                            + " has been created for " + name);

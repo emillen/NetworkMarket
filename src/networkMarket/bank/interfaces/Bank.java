@@ -1,4 +1,6 @@
-package networkMarket.bank;
+package networkMarket.bank.interfaces;
+
+import networkMarket.bank.exceptions.RejectedException;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
