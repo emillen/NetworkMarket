@@ -7,14 +7,14 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 @SuppressWarnings("serial")
-class AccountServant extends UnicastRemoteObject implements Account {
+public class AccountServant extends UnicastRemoteObject implements Account {
     private float balance = 0;
     private String name;
 
     /**
      * Constructs a persistently named object.
      */
-    AccountServant(String name) throws RemoteException {
+    public AccountServant(String name) throws RemoteException {
         super();
         this.name = name;
     }
