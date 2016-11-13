@@ -12,5 +12,6 @@ public interface Item extends Remote {
 
     String getName() throws RemoteException;
 
-    User seller() throws RemoteException;
+    User getSeller() throws RemoteException;
+
 }

@@ -1,4 +1,4 @@
-package networkMarket.marketPlace;
+package networkMarket.client;
 
 import networkMarket.interfaces.User;
 
@@ -9,9 +9,9 @@ import java.rmi.server.UnicastRemoteObject;
  * Created by daseel on 2016-11-11.
  */
 @SuppressWarnings("serial")
-class UserServant extends UnicastRemoteObject implements User {
+class ClientServant extends UnicastRemoteObject implements User {
 
-    public UserServant() throws RemoteException{}
+    public ClientServant() throws RemoteException{}
 
 
 }
