@@ -13,10 +13,12 @@ class ItemServant extends UnicastRemoteObject implements Item {
 
     private String name;
     private double price;
+    private User seller;
 
-    ItemServant(String name, double price) throws RemoteException {
+    ItemServant(String name, double price, User seller) throws RemoteException {
         this.name = name;
         this.price = price;
+        this.seller = seller;
     }
 
     @Override
@@ -30,7 +32,7 @@ class ItemServant extends UnicastRemoteObject implements Item {
     }
 
     @Override
-    public User seller() throws RemoteException {
-        return null;
+    public synchronized User getSeller() throws RemoteException {
+        return seller;
     }
 }
