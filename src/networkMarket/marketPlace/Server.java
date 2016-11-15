@@ -9,15 +9,15 @@ import java.rmi.registry.LocateRegistry;
 /**
  * Created by daseel on 2016-11-11.
  */
-    public class Server {
+public class Server {
 
     public Server() {
         try {
             MarketPlace markPlace = new MarketPlaceServant();
 
-            try{
+            try {
                 LocateRegistry.getRegistry(1099).list();
-            } catch(RemoteException e){
+            } catch (RemoteException e) {
                 LocateRegistry.createRegistry(1099);
             }
 
