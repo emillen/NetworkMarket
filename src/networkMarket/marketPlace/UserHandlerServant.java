@@ -6,16 +6,17 @@ import networkMarket.marketPlace.exceptions.UserException;
 
 import javax.jws.soap.SOAPBinding;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 
 /**
  * Created by daseel on 11/22/16.
  */
-public class UserHandlerServant implements UserHandler {
+public class UserHandlerServant extends UnicastRemoteObject implements UserHandler {
 
-    HashMap<String, UserServant> users;
+    private HashMap<String, UserServant> users;
 
-    public UserHandlerServant() {
+    public UserHandlerServant() throws RemoteException {
 
         users = new HashMap<>();
     }
