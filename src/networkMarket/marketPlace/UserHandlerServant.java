@@ -2,6 +2,7 @@ package networkMarket.marketPlace;
 
 import networkMarket.interfaces.User;
 import networkMarket.interfaces.UserHandler;
+import networkMarket.marketPlace.exceptions.UserException;
 
 import java.rmi.RemoteException;
 import java.util.HashMap;
@@ -29,7 +30,7 @@ public class UserHandlerServant implements UserHandler {
     }
 
     @Override
-    public void register(String userName, String password) throws RemoteException {
+    public void register(String userName, String password) throws RemoteException, UserException {
 
     }
 

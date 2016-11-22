@@ -1,5 +1,7 @@
 package networkMarket.interfaces;
 
+import networkMarket.marketPlace.exceptions.UserException;
+
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -10,7 +12,7 @@ public interface UserHandler extends Remote {
 
     User logIn(String userName, String password) throws RemoteException;
 
-    void register(String userName, String password) throws RemoteException;
+    void register(String userName, String password) throws RemoteException, UserException;
 
-    void unregister(String userName, String password) throws RemoteException;
+    void unregister(String userName, String password) throws RemoteException, UserException;
 }
