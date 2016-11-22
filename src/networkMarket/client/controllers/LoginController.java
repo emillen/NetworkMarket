@@ -11,7 +11,7 @@ public class LoginController {
 
 
     @FXML
-    TabPane tabPane;
+    TabPane tabPane; // To use for switching tabs
 
     ///////////////////////////////////////////////////////////////////////////
     // Properties for the login tab
@@ -19,7 +19,7 @@ public class LoginController {
     @FXML
     TextField loginUsernameField;
     @FXML
-    TextField loginPasswordField;
+    PasswordField loginPasswordField;
     @FXML
     Button loginButton;
 
@@ -31,7 +31,7 @@ public class LoginController {
     @FXML
     TextField registerUsernameField;
     @FXML
-    TextField registerPasswordField;
+    PasswordField registerPasswordField;
     @FXML
     Button registerButton;
 
@@ -53,7 +53,7 @@ public class LoginController {
 
     @FXML
     public void loginUsernameAction() {
-
+        loginPasswordField.requestFocus();
     }
 
     @FXML
