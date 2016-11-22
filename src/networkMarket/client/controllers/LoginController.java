@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import networkMarket.client.services.LoginService;
 import networkMarket.client.services.RegisterService;
 import networkMarket.interfaces.MarketPlace;
+import networkMarket.interfaces.User;
 
 import java.io.IOException;
 
@@ -78,10 +79,12 @@ public class LoginController {
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/storeView.fxml"));
-
+            User user = (User) workerStateEvent.getSource().getValue();
             Stage stage = (Stage) tabPane.getScene().getWindow();
             try {
                 Parent root = loader.load();
+                StoreController controller = loader.getController();
+                controller.init(user, market);
                 stage.setTitle("Market Place, yo");
                 stage.setScene(new Scene(root, 400, 300));
                 stage.show();
