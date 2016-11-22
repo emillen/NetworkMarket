@@ -41,9 +41,14 @@ public class UserHandlerServant implements UserHandler {
     @Override
     public void unregister(User user) throws RemoteException, UserException {
 
-        if (!users.containsKey(user.getName()))
+        if (userExists(user))
             throw new UserException("User does not exist");
 
         users.remove(user.getName());
+    }
+
+    @Override
+    public boolean userExists(User user) throws RemoteException {
+        return users.containsKey(user.getName());
     }
 }
