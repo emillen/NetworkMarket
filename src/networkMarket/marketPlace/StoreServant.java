@@ -1,9 +1,6 @@
 package networkMarket.marketPlace;
 
-import networkMarket.interfaces.Item;
-import networkMarket.interfaces.MarketPlace;
-import networkMarket.interfaces.Store;
-import networkMarket.interfaces.User;
+import networkMarket.interfaces.*;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -16,11 +13,13 @@ import java.util.List;
 class StoreServant extends UnicastRemoteObject implements Store {
 
     private List<Item> items;
+    private UserHandler userHandler;
 
-
-    StoreServant() throws RemoteException {
+    StoreServant(UserHandler userHandler) throws RemoteException {
 
         items = new ArrayList<>();
+        this.userHandler = userHandler;
+
     }
 
     @Override

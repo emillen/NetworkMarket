@@ -12,5 +12,5 @@ public interface Store {
 
     Item addItem(String name, double price, User user) throws RemoteException;
 
-    void buyItem(Item item) throws RemoteException;
+    void buyItem(Item item, User user) throws RemoteException;
 }
