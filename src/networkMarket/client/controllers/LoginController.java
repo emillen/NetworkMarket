@@ -68,7 +68,7 @@ public class LoginController {
 
     @FXML
     public void registerUsernameAction() {
-
+        registerPasswordField.requestFocus();
     }
 
     @FXML
