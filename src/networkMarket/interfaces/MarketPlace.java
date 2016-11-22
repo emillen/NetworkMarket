@@ -9,9 +9,5 @@ import java.util.List;
  */
 public interface MarketPlace extends Remote {
 
-    List<Item> getItems() throws RemoteException;
 
-    Item addItem(String name, double price, User user) throws RemoteException;
-
-    void buyItem(Item item) throws RemoteException;
 }
