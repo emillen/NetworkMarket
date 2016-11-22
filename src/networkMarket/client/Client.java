@@ -21,7 +21,7 @@ public class Client extends Application {
 
         Parent root = loader.load();
         LoginController loginController = loader.getController();
-        loginController.init(market);
+        loginController.init(null, market);
         stage.setTitle("Market Place, yo");
         stage.setScene(new Scene(root, 400, 300));
         stage.show();
