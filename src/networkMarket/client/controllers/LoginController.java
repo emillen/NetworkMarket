@@ -66,6 +66,19 @@ public class LoginController {
         service.start();
     }
 
+    private class LoginSucess implements EventHandler<WorkerStateEvent>{
+        @Override
+        public void handle(WorkerStateEvent workerStateEvent) {
+
+        }
+    }
+
+    private class LoginFail implements EventHandler<WorkerStateEvent>{
+        @Override
+        public void handle(WorkerStateEvent workerStateEvent) {
+
+        }
+    }
 
     ///////////////////////////////////////////////////////////////////////////
     // Methods and classes for the register tab
