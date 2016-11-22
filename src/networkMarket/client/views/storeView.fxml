@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<BorderPane fx:controller="networkMarket.client.controllers.StoreController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <items>
+            <Button fx:id="sellButton" mnemonicParsing="false" text="Sell an item" />
+            <Button mnemonicParsing="false" text="Wish for an item" />
+            <MenuButton mnemonicParsing="false" text="Account">
+              <items>
+                <MenuItem mnemonicParsing="false" text="unregister" />
+                <MenuItem mnemonicParsing="false" text="log out" />
+              </items>
+            </MenuButton>
+         </items>
+      </ToolBar>
+   </top>
+   <center>
+      <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
