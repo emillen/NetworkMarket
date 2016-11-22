@@ -3,13 +3,15 @@ package networkMarket.client.controllers;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import networkMarket.client.services.RegisterService;
 import networkMarket.interfaces.MarketPlace;
 
 public class LoginController {
 
+
+    @FXML
+    TabPane tabPane;
 
     ///////////////////////////////////////////////////////////////////////////
     // Properties for the login tab
@@ -85,7 +87,10 @@ public class LoginController {
 
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
-
+            registerUsernameField.setText("");
+            registerPasswordField.setText("");
+            SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
+            selectionModel.select(0);
         }
     }
 
@@ -94,6 +99,7 @@ public class LoginController {
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
 
+            System.out.println(workerStateEvent.getSource().getException().getMessage());
         }
     }
 }
