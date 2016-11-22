@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import networkMarket.client.controllers.Controller;
+import networkMarket.client.controllers.LoginController;
 import networkMarket.interfaces.MarketPlace;
 
 import java.rmi.Naming;
@@ -17,11 +17,11 @@ public class Client extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/sample.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/loginView.fxml"));
 
         Parent root = loader.load();
-        Controller controller = loader.getController();
-        controller.init(market);
+        LoginController loginController = loader.getController();
+        loginController.init(market);
         stage.setTitle("Market Place, yo");
         stage.setScene(new Scene(root, 400, 300));
         stage.show();
@@ -38,13 +38,11 @@ public class Client extends Application {
                 System.out.println(e.getMessage());
             }
 
-            market = (MarketPlace) Naming.lookup("market");
+            market = (MarketPlace) Naming.lookup("MarketPlace");
             System.out.println("We are ready to go bitch");
             launch(args);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 }
