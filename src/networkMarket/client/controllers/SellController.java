@@ -2,6 +2,7 @@ package networkMarket.client.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import networkMarket.client.services.SellService;
 import networkMarket.interfaces.MarketPlace;
 import networkMarket.interfaces.User;
 
@@ -30,6 +31,9 @@ public class SellController implements Controller {
     public void sell() {
         String name = nameField.getText();
         double price = Double.parseDouble(priceField.getText());
+
+        SellService service = new SellService(name, price, user, market);
+        service.start();
 
     }
 }
