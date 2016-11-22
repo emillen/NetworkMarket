@@ -1,5 +1,7 @@
 package networkMarket.client.controllers;
 
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -48,7 +50,7 @@ public class LoginController {
 
 
     @FXML
-    public void loginUsernameAction(){
+    public void loginUsernameAction() {
 
     }
 
@@ -58,13 +60,12 @@ public class LoginController {
     }
 
 
-
     ///////////////////////////////////////////////////////////////////////////
     // Methods and classes for the register tab
     ///////////////////////////////////////////////////////////////////////////
 
     @FXML
-    public void registerUsernameAction(){
+    public void registerUsernameAction() {
 
     }
 
@@ -72,10 +73,27 @@ public class LoginController {
     public void register() {
         String username = registerUsernameField.getText();
         String password = registerPasswordField.getText();
-
         RegisterService service = new RegisterService(market, username, password);
+        service.setOnSucceeded(new RegisterSuccess());
+        service.setOnFailed(new RegisterFail());
         service.start();
 
     }
 
+
+    public class RegisterSuccess implements EventHandler<WorkerStateEvent> {
+
+        @Override
+        public void handle(WorkerStateEvent workerStateEvent) {
+
+        }
+    }
+
+    public class RegisterFail implements EventHandler<WorkerStateEvent> {
+
+        @Override
+        public void handle(WorkerStateEvent workerStateEvent) {
+
+        }
+    }
 }
