@@ -1,52 +1,24 @@
 package networkMarket.marketPlace;
 
-import networkMarket.interfaces.Item;
 import networkMarket.interfaces.MarketPlace;
-import networkMarket.interfaces.User;
+import networkMarket.interfaces.UserHandler;
 
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Created by daseel on 2016-11-11.
+ * Created by daseel on 11/22/16.
  */
-class MarketPlaceServant extends UnicastRemoteObject implements MarketPlace {
+public class MarketPlaceServant implements MarketPlace {
 
-    private List<Item> items;
+    private UserHandler userHandler;
 
+    public MarketPlaceServant() {
 
-    MarketPlaceServant() throws RemoteException {
-
-        items = new ArrayList<>();
+        userHandler = new UserHandlerServant();
     }
 
     @Override
-    public synchronized List<Item> getItems() throws RemoteException {
-        return items;
-    }
-
-    @Override
-    public synchronized Item addItem(String name, double price, User seller) throws RemoteException {
-        Item item = new ItemServant(name, price, seller);
-        items.add(item);
-        return item;
-    }
-
-    @Override
-    public synchronized void buyItem(Item item) throws RemoteException {
-        // TODO: 2016-11-11 Check if user can actually buy it
-
-        for (Item i : items) {
-            if (i.getName().equals(item.getName())
-                    && i.getSeller().getName().equals(item.getSeller().getName())) {
-                items.remove(i);
-                item.getSeller().notifySoldItem();
-                break;
-            }
-
-        }
-
+    public UserHandler getUserHandler() throws RemoteException {
+        return userHandler;
     }
 }

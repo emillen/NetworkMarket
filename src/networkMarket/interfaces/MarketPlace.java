@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface MarketPlace extends Remote {
 
-
+    UserHandler getUserHandler() throws RemoteException;
 }
