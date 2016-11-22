@@ -81,7 +81,7 @@ public class LoginController {
     }
 
 
-    public class RegisterSuccess implements EventHandler<WorkerStateEvent> {
+    private class RegisterSuccess implements EventHandler<WorkerStateEvent> {
 
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
@@ -89,7 +89,7 @@ public class LoginController {
         }
     }
 
-    public class RegisterFail implements EventHandler<WorkerStateEvent> {
+    private class RegisterFail implements EventHandler<WorkerStateEvent> {
 
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
