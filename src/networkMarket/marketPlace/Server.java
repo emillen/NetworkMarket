@@ -13,7 +13,6 @@ public class Server {
 
     public Server() {
         try {
-            MarketPlace markPlace = new MarketPlaceServant();
 
             try {
                 LocateRegistry.getRegistry(1099).list();
@@ -21,8 +20,9 @@ public class Server {
                 LocateRegistry.createRegistry(1099);
             }
 
-            Naming.rebind("market", markPlace);
+            MarketPlace market = new MarketPlaceServant();
 
+            Naming.bind("MarketPlace", market);
 
             System.out.println("We are ready to go fgt");
         } catch (Exception e) {
