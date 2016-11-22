@@ -3,6 +3,7 @@ package networkMarket.client.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import networkMarket.client.services.RegisterService;
 import networkMarket.interfaces.MarketPlace;
 
 public class LoginController {
@@ -54,7 +55,6 @@ public class LoginController {
     @FXML
     public void login() {
 
-
     }
 
 
@@ -70,6 +70,11 @@ public class LoginController {
 
     @FXML
     public void register() {
+        String username = registerUsernameField.getText();
+        String password = registerPasswordField.getText();
+
+        RegisterService service = new RegisterService(market, username, password);
+        service.start();
 
     }
 
