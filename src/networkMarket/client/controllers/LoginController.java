@@ -10,12 +10,14 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import networkMarket.client.services.LoginService;
 import networkMarket.client.services.RegisterService;
+import networkMarket.client.views.ViewSwapper;
 import networkMarket.interfaces.MarketPlace;
 import networkMarket.interfaces.User;
 
 import java.io.IOException;
+import java.net.URL;
 
-public class LoginController {
+public class LoginController implements Controller {
 
 
     @FXML
@@ -49,7 +51,8 @@ public class LoginController {
     ///////////////////////////////////////////////////////////////////////////
     private MarketPlace market;
 
-    public void init(MarketPlace market) {
+    @Override
+    public void init(User user, MarketPlace market) {
         this.market = market;
     }
 
@@ -78,19 +81,12 @@ public class LoginController {
     private class LoginSucess implements EventHandler<WorkerStateEvent> {
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/storeView.fxml"));
+
             User user = (User) workerStateEvent.getSource().getValue();
             Stage stage = (Stage) tabPane.getScene().getWindow();
-            try {
-                Parent root = loader.load();
-                StoreController controller = loader.getController();
-                controller.init(user, market);
-                stage.setTitle("Market Place, yo");
-                stage.setScene(new Scene(root, 400, 300));
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            URL url = getClass().getResource("../views/storeView.fxml");
+
+            ViewSwapper.swap(user, market, stage, url);
         }
     }
 
@@ -141,4 +137,6 @@ public class LoginController {
             System.out.println(workerStateEvent.getSource().getException().getMessage());
         }
     }
+
+
 }
