@@ -30,9 +30,13 @@ public class StoreController implements Controller {
     @FXML
     public void switchToSellView() {
 
+        // TODO: 11/22/16 Check that user has bank account, else make him create one
+
         URL url = getClass().getResource("../views/sellView.fxml");
         Stage stage = (Stage) sellButton.getScene().getWindow();
 
         ViewSwapper.swap(user, market, stage, url);
     }
+
+    // TODO: 11/22/16 Write items to the screen
 }

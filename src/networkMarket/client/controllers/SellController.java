@@ -36,4 +36,6 @@ public class SellController implements Controller {
         service.start();
 
     }
+
+    // TODO: 11/22/16 Write eventhandlers
 }

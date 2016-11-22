@@ -28,7 +28,7 @@ public class SellService extends Service<Void> {
             @Override
             protected Void call() throws Exception {
 
-
+                // TODO: 11/22/16 Write a way to interact with the store
                 return null;
             }
         };
