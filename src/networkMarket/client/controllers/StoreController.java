@@ -10,8 +10,8 @@ import networkMarket.interfaces.User;
  */
 public class StoreController {
 
-    User user;
-    MarketPlace market;
+    private User user;
+    private MarketPlace market;
 
     @FXML
     Button sellButton;
@@ -22,6 +22,10 @@ public class StoreController {
     }
 
 
-    
+    @FXML
+    public void switchToSellView() {
+
+
+    }
 
 }
