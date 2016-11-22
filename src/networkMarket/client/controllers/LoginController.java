@@ -4,6 +4,7 @@ import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import networkMarket.client.services.LoginService;
 import networkMarket.client.services.RegisterService;
 import networkMarket.interfaces.MarketPlace;
 
@@ -58,7 +59,11 @@ public class LoginController {
 
     @FXML
     public void login() {
+        String username = loginUsernameField.getText();
+        String password = loginPasswordField.getText();
 
+        LoginService service = new LoginService(market, username, password);
+        service.start();
     }
 
 
