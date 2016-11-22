@@ -15,4 +15,6 @@ public interface User extends Remote {
     Account getBankAccount() throws RemoteException;
 
     String getName() throws RemoteException;
+
+    String getPassword() throws RemoteException;
 }
