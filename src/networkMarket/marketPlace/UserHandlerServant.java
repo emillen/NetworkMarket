@@ -4,6 +4,7 @@ import networkMarket.interfaces.User;
 import networkMarket.interfaces.UserHandler;
 import networkMarket.marketPlace.exceptions.UserException;
 
+import javax.jws.soap.SOAPBinding;
 import java.rmi.RemoteException;
 import java.util.HashMap;
 
@@ -31,11 +32,18 @@ public class UserHandlerServant implements UserHandler {
 
     @Override
     public void register(String userName, String password) throws RemoteException, UserException {
+        if (users.containsKey(userName))
+            throw new UserException("Username already exists");
 
+        users.put(userName, new UserServant(userName, null, password));
     }
 
     @Override
-    public void unregister(String userName, String password) throws RemoteException {
+    public void unregister(User user) throws RemoteException, UserException {
 
+        if (!users.containsKey(user.getName()))
+            throw new UserException("User does not exist");
+
+        users.remove(user.getName());
     }
 }
