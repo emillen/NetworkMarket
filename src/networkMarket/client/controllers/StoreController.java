@@ -70,10 +70,11 @@ public class StoreController implements Controller {
         ObservableList<String> list = getObservableList(items);
 
         itemList.setItems(list);
+        itemList.setOnMouseClicked(new ListClickHandler());
     }
 
 
-    private ObservableList<String> getObservableList(List<Item> items){
+    private ObservableList<String> getObservableList(List<Item> items) {
 
         ObservableList<String> list = FXCollections.observableArrayList();
         for (Item i : items) {
@@ -107,4 +108,14 @@ public class StoreController implements Controller {
         }
     }
 
+    private class ListClickHandler implements EventHandler<MouseEvent> {
+        @Override
+        public void handle(MouseEvent mouseEvent) {
+            if (mouseEvent.getClickCount() == 2) {
+
+                int index = itemList.getSelectionModel().getSelectedIndices().get(0);
+                System.out.println(index);
+            }
+        }
+    }
 }
