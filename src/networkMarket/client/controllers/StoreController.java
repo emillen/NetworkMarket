@@ -8,7 +8,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import networkMarket.bank.exceptions.RejectedException;
 import networkMarket.client.services.BuyService;
 import networkMarket.client.services.GetItemsService;
 import networkMarket.client.views.ViewSwapper;
@@ -35,6 +37,8 @@ public class StoreController implements Controller {
     Button sellButton;
     @FXML
     ListView<String> itemList;
+    @FXML
+    Text warningText;
 
     @Override
     public void init(User user, MarketPlace market) {
@@ -138,7 +142,16 @@ public class StoreController implements Controller {
     private class BuyItemFail implements EventHandler<WorkerStateEvent> {
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
+            if (workerStateEvent.getSource().getException() instanceof RejectedException) {
 
+                warningText.setText("Not enough cash dude");
+                warningText.setVisible(true);
+            } else {
+
+                Stage stage = (Stage) itemList.getScene().getWindow();
+                URL url = getClass().getResource("../views/loginView.fxml");
+                ViewSwapper.swap(null, market, stage, url);
+            }
         }
     }
 }

@@ -6,9 +6,9 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="networkMarket.client.controllers.StoreController">
-    <!-- TODO create a view for the products -->
     <top>
       <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <items>
@@ -26,4 +26,7 @@
    <center>
       <ListView fx:id="itemList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
+   <bottom>
+      <Text fx:id="warningText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>
