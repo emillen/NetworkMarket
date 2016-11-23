@@ -1,6 +1,5 @@
 package networkMarket.marketPlace;
 
-import networkMarket.client.UserServant;
 import networkMarket.interfaces.User;
 import networkMarket.interfaces.UserHandler;
 import networkMarket.marketPlace.exceptions.UserException;

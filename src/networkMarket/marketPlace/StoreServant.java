@@ -21,6 +21,7 @@ class StoreServant extends UnicastRemoteObject implements Store {
     StoreServant(UserHandler userHandler) throws RemoteException {
 
         items = new ArrayList<>();
+        wishList = new ArrayList<>();
         this.userHandler = userHandler;
 
     }
@@ -36,7 +37,7 @@ class StoreServant extends UnicastRemoteObject implements Store {
 
         checkUser(seller);
         Item item = new ItemServant(name, price, seller);
-        notifyWishList(item);
+        //notifyWishList(item);
         items.add(item);
         return item;
     }
