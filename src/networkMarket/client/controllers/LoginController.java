@@ -79,7 +79,7 @@ public class LoginController implements Controller {
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
 
-            UserServant user = (UserServant) workerStateEvent.getSource().getValue();
+            User user = (User) workerStateEvent.getSource().getValue();
             Stage stage = (Stage) tabPane.getScene().getWindow();
             URL url = getClass().getResource("../views/storeView.fxml");
 
