@@ -4,9 +4,13 @@ import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import networkMarket.client.services.SellService;
+import networkMarket.client.views.ViewSwapper;
 import networkMarket.interfaces.MarketPlace;
 import networkMarket.interfaces.User;
+
+import java.net.URL;
 
 /**
  * Created by daseel on 11/22/16.
@@ -42,13 +46,14 @@ public class SellController implements Controller {
 
     }
 
-    // TODO: 11/22/16 Write eventhandlers
-
 
     private class SuccessHandler implements EventHandler<WorkerStateEvent> {
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
 
+            Stage stage = (Stage) nameField.getScene().getWindow();
+            URL url = getClass().getResource("../views/storeView.fxml");
+            ViewSwapper.swap(user, market, stage, url);
         }
     }
 
@@ -56,6 +61,11 @@ public class SellController implements Controller {
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
 
+            System.out.println(workerStateEvent.getSource().getException().getMessage());
+
+            Stage stage = (Stage) nameField.getScene().getWindow();
+            URL url = getClass().getResource("../views/loginView.fxml");
+            ViewSwapper.swap(null, market, stage, url);
         }
     }
 }
