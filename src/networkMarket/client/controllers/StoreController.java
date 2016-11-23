@@ -6,11 +6,10 @@ import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.util.Callback;
+import networkMarket.client.services.BuyService;
 import networkMarket.client.services.GetItemsService;
 import networkMarket.client.views.ViewSwapper;
 import networkMarket.interfaces.Item;
@@ -108,13 +107,19 @@ public class StoreController implements Controller {
         }
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    // Classes for buying items
+    ///////////////////////////////////////////////////////////////////////////
+
     private class ListClickHandler implements EventHandler<MouseEvent> {
         @Override
         public void handle(MouseEvent mouseEvent) {
             if (mouseEvent.getClickCount() == 2) {
 
                 int index = itemList.getSelectionModel().getSelectedIndices().get(0);
-                System.out.println(index);
+
+                BuyService service = new BuyService(items.get(index), user, market);
+                service.start();
             }
         }
     }
