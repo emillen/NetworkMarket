@@ -119,19 +119,23 @@ public class StoreController implements Controller {
                 int index = itemList.getSelectionModel().getSelectedIndices().get(0);
 
                 BuyService service = new BuyService(items.get(index), user, market);
+                service.setOnSucceeded(new BuyItemSuccess());
+                service.setOnFailed(new BuyItemFail());
                 service.start();
             }
         }
     }
 
-    private class BuyItemSuccess implements EventHandler<WorkerStateEvent>{
+    private class BuyItemSuccess implements EventHandler<WorkerStateEvent> {
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
-
+            Stage stage = (Stage) itemList.getScene().getWindow();
+            URL url = getClass().getResource("../views/storeView.fxml");
+            ViewSwapper.swap(user, market, stage, url);
         }
     }
 
-    private class BuyItemFail implements EventHandler<WorkerStateEvent>{
+    private class BuyItemFail implements EventHandler<WorkerStateEvent> {
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
 
