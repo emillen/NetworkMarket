@@ -31,12 +31,12 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <TextField  fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <Button fx:id="button" mnemonicParsing="false" text="Bind Account" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+      <Button onAction="#createAccount" fx:id="button" mnemonicParsing="false" text="Bind Account" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
          <font>
             <Font size="18.0" />
          </font>
