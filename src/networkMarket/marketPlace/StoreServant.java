@@ -1,5 +1,6 @@
 package networkMarket.marketPlace;
 
+import networkMarket.bank.exceptions.RejectedException;
 import networkMarket.interfaces.*;
 
 import java.rmi.RemoteException;
@@ -23,7 +24,7 @@ class StoreServant extends UnicastRemoteObject implements Store {
     }
 
     @Override
-    public synchronized List<Item> getItems() throws RemoteException {
+    public synchronized List<Item> getItems(User user) throws RemoteException {
         return items;
     }
 
@@ -35,7 +36,7 @@ class StoreServant extends UnicastRemoteObject implements Store {
     }
 
     @Override
-    public synchronized void buyItem(Item item) throws RemoteException {
+    public synchronized void buyItem(Item item, User user) throws RemoteException {
         // TODO: 2016-11-11 Check if user can actually buy it
 
         for (Item i : items) {

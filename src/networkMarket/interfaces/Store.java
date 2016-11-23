@@ -8,7 +8,7 @@ import java.util.List;
  */
 public interface Store {
 
-    List<Item> getItems() throws RemoteException;
+    List<Item> getItems(User user) throws RemoteException;
 
     Item addItem(String name, double price, User user) throws RemoteException;
 
