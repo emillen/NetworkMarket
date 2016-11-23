@@ -1,5 +1,6 @@
-package networkMarket.marketPlace;
+package networkMarket.client;
 
+import javafx.stage.Stage;
 import networkMarket.interfaces.Account;
 import networkMarket.interfaces.Item;
 import networkMarket.interfaces.User;
@@ -17,6 +18,8 @@ public class UserServant extends UnicastRemoteObject implements User {
     private String name;
     private Account bankAccount;
     private String password;
+    private Stage stage;
+
 
     public UserServant(String name, Account bankAccount, String password) throws RemoteException {
         this.name = name;
@@ -53,5 +56,10 @@ public class UserServant extends UnicastRemoteObject implements User {
     @Override
     public void setBankAccount(Account acc) throws RemoteException {
         bankAccount = acc;
+    }
+
+    void setStageListener(Stage stage){
+
+        this.stage = stage;
     }
 }
