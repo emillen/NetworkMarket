@@ -18,6 +18,8 @@ import networkMarket.interfaces.MarketPlace;
 import networkMarket.interfaces.User;
 
 import java.net.URL;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,11 +41,12 @@ public class StoreController implements Controller {
     public void init(User user, MarketPlace market) {
         this.user = user;
         this.market = market;
-
+        this.items = new ArrayList<>();
         GetItemsService service = new GetItemsService(user, market);
         service.setOnSucceeded(new GetItemSuccess());
         service.setOnFailed(new GetItemFailure());
         service.start();
+
     }
 
 
@@ -63,11 +66,33 @@ public class StoreController implements Controller {
     // Methods and classes for displaying items
     ///////////////////////////////////////////////////////////////////////////
 
+    private void displayItems() {
+        ObservableList<String> list = getObservableList(items);
+
+        itemList.setItems(list);
+    }
+
+
+    private ObservableList<String> getObservableList(List<Item> items){
+
+        ObservableList<String> list = FXCollections.observableArrayList();
+        for (Item i : items) {
+            try {
+                list.add(i.getName() + " " + i.getPrice() + "kr");
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return list;
+    }
+
     private class GetItemSuccess implements EventHandler<WorkerStateEvent> {
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
 
             items = (List<Item>) workerStateEvent.getSource().getValue();
+            displayItems();
         }
     }
 
@@ -77,10 +102,9 @@ public class StoreController implements Controller {
 
             Stage stage = (Stage) itemList.getScene().getWindow();
             URL url = getClass().getResource("../views/loginView.fxml");
-            ViewSwapper.swap(user, market, stage, url);
+            ViewSwapper.swap(null, market, stage, url);
 
         }
     }
 
-    
 }
