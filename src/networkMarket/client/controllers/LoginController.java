@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import networkMarket.client.UserServant;
 import networkMarket.client.services.LoginService;
 import networkMarket.client.services.RegisterService;
 import networkMarket.client.views.ViewSwapper;
@@ -82,8 +83,9 @@ public class LoginController implements Controller {
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
 
-            User user = (User) workerStateEvent.getSource().getValue();
+            UserServant user = (UserServant) workerStateEvent.getSource().getValue();
             Stage stage = (Stage) tabPane.getScene().getWindow();
+            user.setStageListener(stage);
             URL url = getClass().getResource("../views/storeView.fxml");
 
             ViewSwapper.swap(user, market, stage, url);

@@ -58,7 +58,7 @@ public class UserServant extends UnicastRemoteObject implements User {
         bankAccount = acc;
     }
 
-    void setStageListener(Stage stage){
+    public void setStageListener(Stage stage){
 
         this.stage = stage;
     }
