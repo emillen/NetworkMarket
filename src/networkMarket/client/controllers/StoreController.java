@@ -123,4 +123,18 @@ public class StoreController implements Controller {
             }
         }
     }
+
+    private class BuyItemSuccess implements EventHandler<WorkerStateEvent>{
+        @Override
+        public void handle(WorkerStateEvent workerStateEvent) {
+
+        }
+    }
+
+    private class BuyItemFail implements EventHandler<WorkerStateEvent>{
+        @Override
+        public void handle(WorkerStateEvent workerStateEvent) {
+
+        }
+    }
 }
