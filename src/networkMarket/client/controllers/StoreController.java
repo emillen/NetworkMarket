@@ -168,6 +168,8 @@ public class StoreController implements Controller {
     private class BuyItemFail implements EventHandler<WorkerStateEvent> {
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
+
+            System.out.println(workerStateEvent.getSource().getException().getMessage());
             if (workerStateEvent.getSource().getException() instanceof RejectedException) {
 
                 warningText.setText("Not enough cash dude");

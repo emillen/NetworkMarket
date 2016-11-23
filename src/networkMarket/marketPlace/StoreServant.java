@@ -21,6 +21,7 @@ class StoreServant extends UnicastRemoteObject implements Store {
     StoreServant(UserHandler userHandler) throws RemoteException {
 
         items = new ArrayList<>();
+        wishList = new ArrayList<>();
         this.userHandler = userHandler;
 
     }
@@ -32,13 +33,12 @@ class StoreServant extends UnicastRemoteObject implements Store {
     }
 
     @Override
-    public synchronized Item addItem(String name, double price, User seller) throws RemoteException, UserException {
+    public synchronized void addItem(String name, double price, User seller) throws RemoteException, UserException {
 
         checkUser(seller);
         Item item = new ItemServant(name, price, seller);
-        notifyWishList(item);
+        //notifyWishList(item);
         items.add(item);
-        return item;
     }
 
     private void notifyWishList(Item item) throws RemoteException{
