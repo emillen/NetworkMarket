@@ -120,6 +120,11 @@ public class StoreController implements Controller {
         public void handle(MouseEvent mouseEvent) {
             if (mouseEvent.getClickCount() == 2) {
 
+                if(!hasBankAccount(user)) {
+                    Stage stage = (Stage) itemList.getScene().getWindow();
+                    URL url = getClass().getResource("../views/addBankAccountView.fxml");
+                    ViewSwapper.swap(user, market, stage, url);
+                }
                 int index = itemList.getSelectionModel().getSelectedIndices().get(0);
 
                 BuyService service = new BuyService(items.get(index), user, market);
@@ -128,6 +133,22 @@ public class StoreController implements Controller {
                 service.start();
             }
         }
+    }
+
+    private boolean hasBankAccount(User user) {
+
+        boolean hasBankAccount = true;
+
+        try {
+            if (user.getBankAccount() == null) {
+                hasBankAccount = false;
+            }
+
+        } catch (RemoteException e) {
+            switchToLoginView();
+        }
+
+        return hasBankAccount;
     }
 
     private class BuyItemSuccess implements EventHandler<WorkerStateEvent> {
@@ -148,10 +169,14 @@ public class StoreController implements Controller {
                 warningText.setVisible(true);
             } else {
 
-                Stage stage = (Stage) itemList.getScene().getWindow();
-                URL url = getClass().getResource("../views/loginView.fxml");
-                ViewSwapper.swap(null, market, stage, url);
+                switchToLoginView();
             }
         }
+    }
+
+    private void switchToLoginView() {
+        Stage stage = (Stage) itemList.getScene().getWindow();
+        URL url = getClass().getResource("../views/loginView.fxml");
+        ViewSwapper.swap(null, market, stage, url);
     }
 }
