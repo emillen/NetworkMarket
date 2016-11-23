@@ -56,7 +56,12 @@ public class StoreController implements Controller {
     @FXML
     public void switchToSellView() {
 
-        // TODO: 11/22/16 Check that user has bank account, else make him create one
+        if (!hasBankAccount(user)) {
+            Stage stage = (Stage) sellButton.getScene().getWindow();
+            URL url = getClass().getResource("../views/addBankAccountView.fxml");
+            ViewSwapper.swap(user, market, stage, url);
+            return;
+        }
 
         URL url = getClass().getResource("../views/sellView.fxml");
         Stage stage = (Stage) sellButton.getScene().getWindow();
@@ -120,7 +125,7 @@ public class StoreController implements Controller {
         public void handle(MouseEvent mouseEvent) {
             if (mouseEvent.getClickCount() == 2) {
 
-                if(!hasBankAccount(user)) {
+                if (!hasBankAccount(user)) {
                     Stage stage = (Stage) itemList.getScene().getWindow();
                     URL url = getClass().getResource("../views/addBankAccountView.fxml");
                     ViewSwapper.swap(user, market, stage, url);

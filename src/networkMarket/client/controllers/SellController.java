@@ -11,7 +11,6 @@ import networkMarket.interfaces.MarketPlace;
 import networkMarket.interfaces.User;
 
 import java.net.URL;
-import java.rmi.RemoteException;
 
 /**
  * Created by daseel on 11/22/16.
@@ -36,17 +35,6 @@ public class SellController implements Controller {
 
     @FXML
     public void sell() {
-        try {
-            if (user.getBankAccount() == null) {
-                Stage stage = (Stage) nameField.getScene().getWindow();
-                URL url = getClass().getResource("../views/addBankAccountView.fxml");
-                ViewSwapper.swap(null, market, stage, url);
-            }
-        } catch (RemoteException e) {
-            Stage stage = (Stage) nameField.getScene().getWindow();
-            URL url = getClass().getResource("../views/loginView.fxml");
-            ViewSwapper.swap(null, market, stage, url);
-        }
         String name = nameField.getText();
         double price = Double.parseDouble(priceField.getText());
 
