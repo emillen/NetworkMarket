@@ -1,5 +1,7 @@
 package networkMarket.interfaces;
 
+import networkMarket.bank.exceptions.RejectedException;
+
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
@@ -13,5 +15,5 @@ public interface Store extends Remote {
 
     Item addItem(String name, double price, User user) throws RemoteException;
 
-    void buyItem(Item item, User user) throws RemoteException;
+    void buyItem(Item item, User user) throws RemoteException, RejectedException;
 }

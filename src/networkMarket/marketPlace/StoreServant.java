@@ -36,18 +36,21 @@ class StoreServant extends UnicastRemoteObject implements Store {
     }
 
     @Override
-    public synchronized void buyItem(Item item, User buyer) throws RemoteException {
+    public synchronized void buyItem(Item item, User buyer) throws RemoteException, RejectedException {
         // TODO: 2016-11-11 Check if user can actually buy it
+
+        if (buyer.getBankAccount() == null)
+            throw new RejectedException("No bank account, dude");
 
         for (Item i : items) {
             if (i.getName().equals(item.getName())
                     && i.getSeller().getName().equals(item.getSeller().getName())) {
+                buyer.getBankAccount().withdraw((float) item.getPrice());
                 items.remove(i);
                 item.getSeller().notifySoldItem();
                 break;
             }
 
         }
-
     }
 }
