@@ -15,13 +15,11 @@ import java.util.List;
 class StoreServant extends UnicastRemoteObject implements Store {
 
     private List<Item> items;
-    private List<Item> wishList;
     private UserHandler userHandler;
 
     StoreServant(UserHandler userHandler) throws RemoteException {
 
         items = new ArrayList<>();
-        wishList = new ArrayList<>();
         this.userHandler = userHandler;
 
     }
@@ -41,13 +39,6 @@ class StoreServant extends UnicastRemoteObject implements Store {
         items.add(item);
     }
 
-    private void notifyWishList(Item item) throws RemoteException{
-
-        for(Item wishItem : wishList){
-            if(wishItem.getName().equals(item.getName()) && wishItem.getPrice() <= item.getPrice())
-                wishItem.getSeller().notifyWishItem(item);
-        }
-    }
 
     @Override
     public synchronized void buyItem(Item item, User buyer) throws RemoteException, RejectedException, UserException {
