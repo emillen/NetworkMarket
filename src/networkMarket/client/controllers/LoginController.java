@@ -3,19 +3,15 @@ package networkMarket.client.controllers;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import networkMarket.client.UserServant;
+import networkMarket.marketPlace.UserServant;
 import networkMarket.client.services.LoginService;
 import networkMarket.client.services.RegisterService;
 import networkMarket.client.views.ViewSwapper;
 import networkMarket.interfaces.MarketPlace;
 import networkMarket.interfaces.User;
 
-import java.io.IOException;
 import java.net.URL;
 
 public class LoginController implements Controller {
@@ -85,7 +81,6 @@ public class LoginController implements Controller {
 
             UserServant user = (UserServant) workerStateEvent.getSource().getValue();
             Stage stage = (Stage) tabPane.getScene().getWindow();
-            user.setStageListener(stage);
             URL url = getClass().getResource("../views/storeView.fxml");
 
             ViewSwapper.swap(user, market, stage, url);
