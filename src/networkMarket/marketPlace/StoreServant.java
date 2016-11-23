@@ -2,6 +2,7 @@ package networkMarket.marketPlace;
 
 import networkMarket.bank.exceptions.RejectedException;
 import networkMarket.interfaces.*;
+import networkMarket.marketPlace.exceptions.UserException;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -24,20 +25,26 @@ class StoreServant extends UnicastRemoteObject implements Store {
     }
 
     @Override
-    public synchronized List<Item> getItems(User viewer) throws RemoteException {
+    public synchronized List<Item> getItems(User viewer) throws RemoteException, UserException {
+        checkUser(viewer);
         return items;
     }
 
     @Override
-    public synchronized Item addItem(String name, double price, User seller) throws RemoteException {
+    public synchronized Item addItem(String name, double price, User seller) throws RemoteException, UserException {
+
+        checkUser(seller);
+
         Item item = new ItemServant(name, price, seller);
         items.add(item);
         return item;
     }
 
     @Override
-    public synchronized void buyItem(Item item, User buyer) throws RemoteException, RejectedException {
+    public synchronized void buyItem(Item item, User buyer) throws RemoteException, RejectedException, UserException {
         // TODO: 2016-11-11 Check if user can actually buy it
+
+        checkUser(buyer);
 
         if (buyer.getBankAccount() == null)
             throw new RejectedException("No bank account, dude");
@@ -52,5 +59,11 @@ class StoreServant extends UnicastRemoteObject implements Store {
             }
 
         }
+    }
+
+    private void checkUser(User user) throws UserException, RemoteException {
+
+        if (user == null || !userHandler.userExists(user))
+            throw new UserException("Account does not exist");
     }
 }
