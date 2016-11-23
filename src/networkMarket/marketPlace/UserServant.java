@@ -49,4 +49,9 @@ public class UserServant extends UnicastRemoteObject implements User {
     public String getPassword() throws RemoteException {
         return password;
     }
+
+    @Override
+    public void setBankAccount(Account acc) throws RemoteException {
+        bankAccount = acc;
+    }
 }
