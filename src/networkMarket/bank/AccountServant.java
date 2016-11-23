@@ -8,7 +8,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 @SuppressWarnings("serial")
 public class AccountServant extends UnicastRemoteObject implements Account {
-    private float balance = 0;
+    private float balance = 1000;
     private String name;
 
     /**
