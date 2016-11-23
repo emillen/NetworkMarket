@@ -10,7 +10,7 @@ import java.rmi.RemoteException;
  */
 public interface UserHandler extends Remote {
 
-    User logIn(String userName, String password) throws RemoteException;
+    User logIn(String userName, String password) throws RemoteException, UserException;
 
     void register(String userName, String password) throws RemoteException, UserException;
 

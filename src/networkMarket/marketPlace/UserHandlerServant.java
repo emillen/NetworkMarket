@@ -22,13 +22,13 @@ public class UserHandlerServant extends UnicastRemoteObject implements UserHandl
     }
 
     @Override
-    public User logIn(String userName, String password) throws RemoteException {
+    public User logIn(String userName, String password) throws RemoteException, UserException {
 
         if (users.containsKey(userName) &&
                 users.get(userName).getPassword().equals(password))
             return users.get(userName);
 
-        return null;
+        throw new UserException("Username and password does not match");
     }
 
     @Override
