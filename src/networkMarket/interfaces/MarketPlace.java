@@ -2,7 +2,6 @@ package networkMarket.interfaces;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.List;
 
 /**
  * Created by daseel on 2016-11-11.
@@ -10,4 +9,5 @@ import java.util.List;
 public interface MarketPlace extends Remote {
 
     UserHandler getUserHandler() throws RemoteException;
+    Store getStore() throws RemoteException;
 }
