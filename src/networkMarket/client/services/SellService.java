@@ -3,6 +3,7 @@ package networkMarket.client.services;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import networkMarket.interfaces.MarketPlace;
+import networkMarket.interfaces.Store;
 import networkMarket.interfaces.User;
 
 /**
@@ -28,7 +29,9 @@ public class SellService extends Service<Void> {
             @Override
             protected Void call() throws Exception {
 
-                // TODO: 11/22/16 Write a way to interact with the store
+                Store store = market.getStore();
+
+                store.addItem(name, price, user);
                 return null;
             }
         };
