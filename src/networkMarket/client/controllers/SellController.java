@@ -1,5 +1,7 @@
 package networkMarket.client.controllers;
 
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import networkMarket.client.services.SellService;
@@ -33,9 +35,27 @@ public class SellController implements Controller {
         double price = Double.parseDouble(priceField.getText());
 
         SellService service = new SellService(name, price, user, market);
+        service.setOnSucceeded(new SuccessHandler());
+        service.setOnFailed(new FailHandler());
+
         service.start();
 
     }
 
     // TODO: 11/22/16 Write eventhandlers
+
+
+    private class SuccessHandler implements EventHandler<WorkerStateEvent> {
+        @Override
+        public void handle(WorkerStateEvent workerStateEvent) {
+
+        }
+    }
+
+    private class FailHandler implements EventHandler<WorkerStateEvent> {
+        @Override
+        public void handle(WorkerStateEvent workerStateEvent) {
+
+        }
+    }
 }
