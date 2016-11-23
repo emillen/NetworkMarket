@@ -15,6 +15,7 @@ import java.util.List;
 class StoreServant extends UnicastRemoteObject implements Store {
 
     private List<Item> items;
+    private List<Item> wishList;
     private UserHandler userHandler;
 
     StoreServant(UserHandler userHandler) throws RemoteException {
@@ -34,10 +35,18 @@ class StoreServant extends UnicastRemoteObject implements Store {
     public synchronized Item addItem(String name, double price, User seller) throws RemoteException, UserException {
 
         checkUser(seller);
-
         Item item = new ItemServant(name, price, seller);
+        notifyWishList(item);
         items.add(item);
         return item;
+    }
+
+    private void notifyWishList(Item item) throws RemoteException{
+
+        for(Item wishItem : wishList){
+            if(wishItem.getName().equals(item.getName()) && wishItem.getPrice() <= item.getPrice())
+                wishItem.getSeller().notifyWishItem(item);
+        }
     }
 
     @Override
