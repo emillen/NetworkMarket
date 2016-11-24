@@ -93,7 +93,7 @@ class StoreServant extends UnicastRemoteObject implements Store {
         for (List<Wish> l : allWishes) {
             for (Wish w : l) {
 
-                if (w.getPrice() >= item.getPrice() && w.getItemName().equals(w.getItemName())) {
+                if (w.getPrice() >= item.getPrice() && w.getItemName().equals(item.getName())) {
                     w.setBeenFound(true);
                 }
             }
@@ -104,8 +104,8 @@ class StoreServant extends UnicastRemoteObject implements Store {
     public void removeFromWishList(Wish wish, User user) throws RemoteException {
         List<Wish> userWishes = wishlist.get(user.getName());
 
-        for(int i = 0; i < userWishes.size(); i++){
-            if(userWishes.get(i).getItemName().equals(wish.getItemName()) && userWishes.get(i).getPrice() == wish.getPrice())
+        for (int i = 0; i < userWishes.size(); i++) {
+            if (userWishes.get(i).getItemName().equals(wish.getItemName()) && userWishes.get(i).getPrice() == wish.getPrice())
                 userWishes.remove(i);
         }
 
