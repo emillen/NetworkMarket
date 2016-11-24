@@ -53,13 +53,20 @@ public class StoreController implements Controller {
     }
 
     @FXML
-    private void updateView(){
+    private void updateView() {
         GetItemsService service = new GetItemsService(user, market);
         service.setOnSucceeded(new GetItemSuccess());
         service.setOnFailed(new GetItemFailure());
         service.start();
     }
 
+    @FXML
+    public void switchToWishView() {
+        URL url = getClass().getResource("../views/wishView.fxml");
+        Stage stage = (Stage) sellButton.getScene().getWindow();
+
+        ViewSwapper.swap(user, market, stage, url);
+    }
 
     @FXML
     public void switchToSellView() {

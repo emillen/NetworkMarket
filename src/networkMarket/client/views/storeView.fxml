@@ -13,7 +13,7 @@
       <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <items>
             <Button fx:id="sellButton" mnemonicParsing="false" onAction="#switchToSellView" text="Sell an item" />
-            <Button fx:id="wishButton" mnemonicParsing="false" text="Wish for an item" />
+            <Button onAction="#switchToWishView" fx:id="wishButton" mnemonicParsing="false" text="Wish for an item" />
             <Button onAction="#updateView" mnemonicParsing="false" text="UpdateView" />
             <MenuButton mnemonicParsing="false" text="Account">
               <items>
