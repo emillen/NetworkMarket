@@ -62,7 +62,7 @@ public class StoreController implements Controller {
 
     @FXML
     public void switchToWishView() {
-        URL url = getClass().getResource("../views/wishView.fxml");
+        URL url = getClass().getResource("../views/makeWishView.fxml");
         Stage stage = (Stage) sellButton.getScene().getWindow();
 
         ViewSwapper.swap(user, market, stage, url);
