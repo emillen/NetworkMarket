@@ -93,7 +93,7 @@ class StoreServant extends UnicastRemoteObject implements Store {
         for (List<Wish> l : allWishes) {
             for (Wish w : l) {
 
-                if (w.getPrice() >= item.getPrice() && w.getItemName().equals(w.getItemName())) {
+                if (w.getPrice() >= item.getPrice() && w.getItemName().equals(item.getName())) {
                     w.setBeenFound(true);
                 }
             }
