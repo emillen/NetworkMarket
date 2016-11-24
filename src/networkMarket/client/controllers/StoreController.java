@@ -20,6 +20,7 @@ import networkMarket.interfaces.Item;
 import networkMarket.interfaces.MarketPlace;
 import networkMarket.interfaces.User;
 
+import javax.swing.text.View;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -99,7 +100,10 @@ public class StoreController implements Controller {
 
     @FXML
     public void logout() {
-        System.out.println("logout");
+        Stage stage = (Stage) sellButton.getScene().getWindow();
+        URL url = getClass().getResource("../views/loginView.fxml");
+
+        ViewSwapper.swap(user, market, stage, url);
     }
 
     ///////////////////////////////////////////////////////////////////////////
