@@ -11,4 +11,5 @@ public interface Wish extends Remote{
     String getItemName() throws RemoteException;
     double getPrice() throws RemoteException;
     boolean beenFound() throws RemoteException;
+    void setBeenFound(boolean beenFound) throws RemoteException;
 }
