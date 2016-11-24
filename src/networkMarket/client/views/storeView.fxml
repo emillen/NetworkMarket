@@ -15,10 +15,10 @@
             <Button fx:id="sellButton" mnemonicParsing="false" onAction="#switchToSellView" text="Sell an item" />
             <Button onAction="#switchToWishView" fx:id="wishButton" mnemonicParsing="false" text="Wish for an item" />
             <Button onAction="#updateView" mnemonicParsing="false" text="UpdateView" />
-            <MenuButton mnemonicParsing="false" text="Account">
+            <MenuButton fx:id="accountMenu" mnemonicParsing="false" text="Account">
               <items>
-                <MenuItem mnemonicParsing="false" text="unregister" />
-                <MenuItem mnemonicParsing="false" text="log out" />
+                <MenuItem onAction="#unregister" mnemonicParsing="false" text="unregister" />
+                <MenuItem onAction="#logout" mnemonicParsing="false" text="log out" />
               </items>
             </MenuButton>
          </items>
