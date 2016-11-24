@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import networkMarket.bank.exceptions.RejectedException;
 import networkMarket.client.services.BuyService;
 import networkMarket.client.services.GetItemsService;
+import networkMarket.client.services.UnregisterService;
 import networkMarket.client.views.ViewSwapper;
 import networkMarket.interfaces.Item;
 import networkMarket.interfaces.MarketPlace;
@@ -95,15 +96,17 @@ public class StoreController implements Controller {
 
     @FXML
     public void unregister() {
-        System.out.println("Unregister");
+
+        UnregisterService service = new UnregisterService(user, market);
+        service.start();
+
+
+
     }
 
     @FXML
     public void logout() {
-        Stage stage = (Stage) sellButton.getScene().getWindow();
-        URL url = getClass().getResource("../views/loginView.fxml");
-
-        ViewSwapper.swap(user, market, stage, url);
+        switchToLoginView();
     }
 
     ///////////////////////////////////////////////////////////////////////////
