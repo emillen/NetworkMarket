@@ -8,10 +8,6 @@ import java.rmi.RemoteException;
  */
 public interface User extends Remote {
 
-    void notifySoldItem() throws RemoteException;
-
-    Item notifyWishItem(Item item) throws RemoteException;
-
     Account getBankAccount() throws RemoteException;
 
     void setBankAccount(Account acc) throws RemoteException;

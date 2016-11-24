@@ -19,23 +19,11 @@ public class UserServant extends UnicastRemoteObject implements User {
     private String name;
     private Account bankAccount;
     private String password;
-    private Stage stage;
 
 
     public UserServant(String name, String password) throws RemoteException {
         this.name = name;
         this.password = password;
-    }
-
-    @Override
-    public void notifySoldItem() throws RemoteException {
-
-    }
-
-    @Override
-    public Item notifyWishItem(Item item) throws RemoteException {
-        System.out.println("My item exists! Woohoo. Stuff is going well for me " + item.getName());
-        return item;
     }
 
     @Override
