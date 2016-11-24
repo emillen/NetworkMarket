@@ -23,7 +23,7 @@ public class CheckSoldService extends Service<Item> {
 
                 while (!item.isSold())
                     Thread.sleep(1000);
-                return null;
+                return item;
             }
         };
     }
