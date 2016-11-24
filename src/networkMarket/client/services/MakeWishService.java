@@ -31,6 +31,7 @@ public class MakeWishService extends Service<Void> {
             @Override
             protected Void call() throws Exception {
 
+                System.out.println(user.getName());
                 market.getStore().wishItem(name, price, user);
                 return null;
             }
