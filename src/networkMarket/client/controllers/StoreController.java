@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -42,13 +43,19 @@ public class StoreController implements Controller {
     ListView<String> itemList;
     @FXML
     Text warningText;
-
+    @FXML
+    MenuButton accountMenu;
 
     @Override
     public void init(User user, MarketPlace market) {
         this.user = user;
         this.market = market;
         this.items = new ArrayList<>();
+        try {
+            accountMenu.setText(user.getName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         updateView();
     }
 
@@ -84,6 +91,16 @@ public class StoreController implements Controller {
         ViewSwapper.swap(user, market, stage, url);
     }
 
+
+    @FXML
+    public void unregister() {
+        System.out.println("Unregister");
+    }
+
+    @FXML
+    public void logout() {
+        System.out.println("logout");
+    }
 
     ///////////////////////////////////////////////////////////////////////////
     // Methods and classes for displaying items

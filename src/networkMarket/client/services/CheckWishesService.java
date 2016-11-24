@@ -24,6 +24,7 @@ public class CheckWishesService extends Service<Wish> {
         this.user = user;
         this.market = market;
         this.setOnSucceeded(new SuccessHandler());
+        this.setOnFailed(new FailHandler());
     }
 
     @Override
@@ -36,28 +37,31 @@ public class CheckWishesService extends Service<Wish> {
                 Thread.sleep(1000);
                 List<Wish> myWishList = market.getStore().getMyWishes(user);
                 Wish foundWish = null;
-                for (Wish w : myWishList) {
-                    if (w.beenFound()) {
-                        foundWish = w;
-                        myWishList.remove(w);
+                if(myWishList != null)
+                    for (Wish w : myWishList) {
+                        if (w.beenFound()) {
+                            System.out.println("Hueheuhe");
+                            foundWish = w;
+                            market.getStore().removeFromWishList(w, user);
+                            break;
+                        }
                     }
-                }
-                return foundWish;
+                    return foundWish;
             }
         };
     }
 
-    private class SuccessHandler implements EventHandler<WorkerStateEvent>{
+    private class SuccessHandler implements EventHandler<WorkerStateEvent> {
 
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
             Wish wish = (Wish) workerStateEvent.getSource().getValue();
-            if(wish != null){
+            if (wish != null) {
                 try {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Dialog");
                     alert.setHeaderText("Hey, " + user.getName() + "!");
-                    alert.setContentText(wish.getItemName() + " " + wish.getPrice() + "kr hasBeenFound");
+                    alert.setContentText(wish.getItemName() + " for less than " + wish.getPrice() + "kr has been found");
 
                     alert.showAndWait();
                 } catch (Exception e) {
@@ -67,6 +71,13 @@ public class CheckWishesService extends Service<Wish> {
             }
 
             new CheckWishesService(user, market).start();
+        }
+    }
+
+    private class FailHandler implements EventHandler<WorkerStateEvent> {
+        @Override
+        public void handle(WorkerStateEvent workerStateEvent) {
+            workerStateEvent.getSource().getException().printStackTrace();
         }
     }
 }

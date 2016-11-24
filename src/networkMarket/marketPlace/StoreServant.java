@@ -100,6 +100,17 @@ class StoreServant extends UnicastRemoteObject implements Store {
         }
     }
 
+    @Override
+    public void removeFromWishList(Wish wish, User user) throws RemoteException {
+        List<Wish> userWishes = wishlist.get(user.getName());
+
+        for(int i = 0; i < userWishes.size(); i++){
+            if(userWishes.get(i).getItemName().equals(wish.getItemName()) && userWishes.get(i).getPrice() == wish.getPrice())
+                userWishes.remove(i);
+        }
+
+    }
+
     private void checkUser(User user) throws RemoteException, UserException {
 
         if (!userHandler.userExists(user.getName()))
