@@ -37,7 +37,7 @@ public class CheckWishesService extends Service<Wish> {
                 Thread.sleep(1000);
                 List<Wish> myWishList = market.getStore().getMyWishes(user);
                 Wish foundWish = null;
-                if(myWishList != null)
+                if (myWishList != null)
                     for (Wish w : myWishList) {
                         if (w.beenFound()) {
                             System.out.println("Hueheuhe");
@@ -46,7 +46,7 @@ public class CheckWishesService extends Service<Wish> {
                             break;
                         }
                     }
-                    return foundWish;
+                return foundWish;
             }
         };
     }
