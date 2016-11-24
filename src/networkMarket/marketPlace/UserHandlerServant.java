@@ -22,39 +22,38 @@ public class UserHandlerServant extends UnicastRemoteObject implements UserHandl
     }
 
     @Override
-    public void logIn(User user) throws RemoteException, UserException {
+    public User logIn(String username, String password) throws RemoteException, UserException {
 
-        if (userExists(user) &&
-                users.get(user.getName()).getPassword().equals(user.getPassword())) {
+        if (userExists(username) &&
+                users.get(username).getPassword().equals(password)) {
 
-            if (user != users.get(user.getName()))
-                users.put(user.getName(), user);
-            return;
-
+            return users.get(username);
         }
 
         throw new UserException("Username and password does not match");
     }
 
     @Override
-    public void register(User newUser) throws RemoteException, UserException {
-        if (userExists(newUser))
+    public void register(String username, String password) throws RemoteException, UserException {
+        if (userExists(username))
             throw new UserException("Username already exists");
 
-        users.put(newUser.getName(), newUser);
+        User newUser = new UserServant(username, password);
+        users.put(username, newUser);
     }
 
     @Override
     public void unregister(User user) throws RemoteException, UserException {
 
-        if (userExists(user))
+        if (!userExists(user.getName()) && !user.getPassword().equals(users.get(user.getName()).getPassword()))
             throw new UserException("User does not exist");
 
         users.remove(user.getName());
     }
 
 
-    private boolean userExists(User user) throws RemoteException {
-        return users.containsKey(user.getName());
+    @Override
+    public boolean userExists(String username) throws RemoteException {
+        return users.containsKey(username);
     }
 }

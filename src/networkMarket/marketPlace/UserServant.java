@@ -1,5 +1,6 @@
 package networkMarket.marketPlace;
 
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import networkMarket.interfaces.Account;
 import networkMarket.interfaces.Item;
@@ -28,7 +29,7 @@ public class UserServant extends UnicastRemoteObject implements User {
 
     @Override
     public void notifySoldItem() throws RemoteException {
-        System.out.println("I sold an item");
+
     }
 
     @Override

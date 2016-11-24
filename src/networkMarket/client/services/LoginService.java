@@ -5,7 +5,6 @@ import javafx.concurrent.Task;
 import networkMarket.interfaces.MarketPlace;
 import networkMarket.interfaces.User;
 import networkMarket.interfaces.UserHandler;
-import networkMarket.marketPlace.UserServant;
 
 /**
  * Created by daseel on 11/22/16.
@@ -28,11 +27,9 @@ public class LoginService extends Service<User> {
         return new Task<User>() {
             @Override
             protected User call() throws Exception {
-
-                User user = new UserServant(username, password);
                 UserHandler handler = market.getUserHandler();
-                handler.logIn(user);
-                return user;
+
+                return handler.logIn(username, password);
             }
         };
     }

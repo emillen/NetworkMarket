@@ -14,4 +14,7 @@ public interface Item extends Remote {
 
     User getSeller() throws RemoteException;
 
+    boolean isSold() throws RemoteException;
+
+    void setIsSold(boolean isSold) throws RemoteException;
 }

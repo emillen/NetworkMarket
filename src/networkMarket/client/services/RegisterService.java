@@ -31,9 +31,8 @@ public class RegisterService extends Service<Void> {
 
                 UserHandler handler = market.getUserHandler();
 
-                User user = new UserServant(username, password);
 
-                handler.register(user);
+                handler.register(username, password);
 
                 return null;
             }

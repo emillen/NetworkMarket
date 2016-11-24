@@ -14,7 +14,7 @@ public interface Store extends Remote {
 
     List<Item> getItems(User user) throws RemoteException, UserException;
 
-    void addItem(String name, double price, User user) throws RemoteException, UserException;
+    Item addItem(String name, double price, User user) throws RemoteException, UserException;
 
     void buyItem(Item item, User user) throws RemoteException, RejectedException, UserException;
 }

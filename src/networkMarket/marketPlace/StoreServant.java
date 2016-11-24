@@ -26,24 +26,25 @@ class StoreServant extends UnicastRemoteObject implements Store {
 
     @Override
     public synchronized List<Item> getItems(User viewer) throws RemoteException, UserException {
-        userHandler.logIn(viewer);
+        checkUser(viewer);
         return items;
     }
 
     @Override
-    public synchronized void addItem(String name, double price, User seller) throws RemoteException, UserException {
+    public synchronized Item addItem(String name, double price, User seller) throws RemoteException, UserException {
 
-        userHandler.logIn(seller);
+        checkUser(seller);
         Item item = new ItemServant(name, price, seller);
         //notifyWishList(item);
         items.add(item);
+        return item;
     }
 
 
     @Override
     public synchronized void buyItem(Item item, User buyer) throws RemoteException, RejectedException, UserException {
 
-        userHandler.logIn(buyer);
+        checkUser(buyer);
         if (buyer.getBankAccount() == null)
             throw new RejectedException("No bank account, dude");
 
@@ -54,9 +55,16 @@ class StoreServant extends UnicastRemoteObject implements Store {
                 item.getSeller().getBankAccount().deposit((float) item.getPrice());
                 items.remove(i);
                 item.getSeller().notifySoldItem();
+                item.setIsSold(true);
                 break;
             }
 
         }
+    }
+
+    private void checkUser(User user) throws RemoteException, UserException {
+
+        if (!userHandler.userExists(user.getName()))
+            throw new UserException("You are not logged in dawg");
     }
 }

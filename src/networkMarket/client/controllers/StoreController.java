@@ -49,7 +49,8 @@ public class StoreController implements Controller {
         service.setOnSucceeded(new GetItemSuccess());
         service.setOnFailed(new GetItemFailure());
         service.start();
-
+        try{
+        user.notifySoldItem();} catch (Exception e){}
     }
 
 

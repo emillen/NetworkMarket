@@ -3,10 +3,13 @@ package networkMarket.client.controllers;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import networkMarket.client.services.CheckSoldService;
 import networkMarket.client.services.SellService;
 import networkMarket.client.views.ViewSwapper;
+import networkMarket.interfaces.Item;
 import networkMarket.interfaces.MarketPlace;
 import networkMarket.interfaces.User;
 
@@ -51,6 +54,10 @@ public class SellController implements Controller {
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
 
+            CheckSoldService service = new CheckSoldService((Item) workerStateEvent.getSource().getValue());
+            service.setOnSucceeded(new ItemIsSoldHandler());
+            service.setOnFailed(new ItemIsSoldFailHandler());
+            service.start();
             Stage stage = (Stage) nameField.getScene().getWindow();
             URL url = getClass().getResource("../views/storeView.fxml");
             ViewSwapper.swap(user, market, stage, url);
@@ -66,6 +73,35 @@ public class SellController implements Controller {
             Stage stage = (Stage) nameField.getScene().getWindow();
             URL url = getClass().getResource("../views/loginView.fxml");
             ViewSwapper.swap(null, market, stage, url);
+        }
+    }
+
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Handlers for checking if the item is sold
+    ///////////////////////////////////////////////////////////////////////////
+    private class ItemIsSoldHandler implements EventHandler<WorkerStateEvent> {
+
+        @Override
+        public void handle(WorkerStateEvent workerStateEvent) {
+            try {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText("Hey, " + user.getName() + "!");
+                alert.setContentText("I have a great message for you!");
+
+                alert.showAndWait();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private class ItemIsSoldFailHandler implements EventHandler<WorkerStateEvent> {
+
+        @Override
+        public void handle(WorkerStateEvent workerStateEvent) {
+            System.out.println("Shit failed bitch");
         }
     }
 }

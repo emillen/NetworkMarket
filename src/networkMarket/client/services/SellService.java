@@ -2,6 +2,7 @@ package networkMarket.client.services;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import networkMarket.interfaces.Item;
 import networkMarket.interfaces.MarketPlace;
 import networkMarket.interfaces.Store;
 import networkMarket.interfaces.User;
@@ -9,7 +10,7 @@ import networkMarket.interfaces.User;
 /**
  * Created by daseel on 11/22/16.
  */
-public class SellService extends Service<Void> {
+public class SellService extends Service<Item> {
 
     private String name;
     private double price;
@@ -24,15 +25,14 @@ public class SellService extends Service<Void> {
     }
 
     @Override
-    protected Task<Void> createTask() {
-        return new Task<Void>() {
+    protected Task<Item> createTask() {
+        return new Task<Item>() {
             @Override
-            protected Void call() throws Exception {
+            protected Item call() throws Exception {
 
                 Store store = market.getStore();
 
-                store.addItem(name, price, user);
-                return null;
+                return store.addItem(name, price, user);
             }
         };
     }
