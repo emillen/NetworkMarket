@@ -7,6 +7,7 @@ import networkMarket.marketPlace.exceptions.UserException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -16,12 +17,13 @@ class StoreServant extends UnicastRemoteObject implements Store {
 
     private List<Item> items;
     private UserHandler userHandler;
+    private HashMap<String, List<Wish>> wishlist;
 
     StoreServant(UserHandler userHandler) throws RemoteException {
 
-        items = new ArrayList<>();
+        this.items = new ArrayList<>();
         this.userHandler = userHandler;
-
+        this.wishlist = new HashMap<>();
     }
 
     @Override
@@ -59,6 +61,29 @@ class StoreServant extends UnicastRemoteObject implements Store {
             }
 
         }
+    }
+
+    @Override
+    public void wishItem(String name, double price, User user) throws RemoteException, UserException {
+        checkUser(user);
+
+        Wish wish = new WishServant(name, price);
+        if (wishlist.containsKey(user.getName())) {
+            wishlist.get(user.getName()).add(wish);
+        } else {
+            List<Wish> userList = new ArrayList<>();
+            userList.add(wish);
+            wishlist.put(user.getName(), userList);
+
+        }
+    }
+
+    @Override
+    public List<Wish> getMyWishes(User user) throws RemoteException {
+        if (wishlist.containsKey(user.getName()))
+            return wishlist.get(user.getName());
+
+        return null;
     }
 
     private void checkUser(User user) throws RemoteException, UserException {
