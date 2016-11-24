@@ -2,6 +2,9 @@ package networkMarket.client.services;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import networkMarket.interfaces.MarketPlace;
 import networkMarket.interfaces.User;
 import networkMarket.interfaces.Wish;
@@ -20,6 +23,7 @@ public class CheckWishesService extends Service<Wish> {
     public CheckWishesService(User user, MarketPlace market) {
         this.user = user;
         this.market = market;
+        this.setOnSucceeded(new SuccessHandler());
     }
 
     @Override
@@ -41,5 +45,28 @@ public class CheckWishesService extends Service<Wish> {
                 return foundWish;
             }
         };
+    }
+
+    private class SuccessHandler implements EventHandler<WorkerStateEvent>{
+
+        @Override
+        public void handle(WorkerStateEvent workerStateEvent) {
+            Wish wish = (Wish) workerStateEvent.getSource().getValue();
+            if(wish != null){
+                try {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Dialog");
+                    alert.setHeaderText("Hey, " + user.getName() + "!");
+                    alert.setContentText(wish.getItemName() + " " + wish.getPrice() + "kr hasBeenFound");
+
+                    alert.showAndWait();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            new CheckWishesService(user, market).start();
+        }
     }
 }
