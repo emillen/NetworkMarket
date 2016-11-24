@@ -1,10 +1,13 @@
 package networkMarket.client.controllers;
 
+import com.sun.xml.internal.ws.api.pipe.FiberContextSwitchInterceptor;
+import javafx.concurrent.Service;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import networkMarket.client.services.CheckWishesService;
 import networkMarket.marketPlace.UserServant;
 import networkMarket.client.services.LoginService;
 import networkMarket.client.services.RegisterService;
@@ -80,6 +83,8 @@ public class LoginController implements Controller {
         public void handle(WorkerStateEvent workerStateEvent) {
 
             User user = (User) workerStateEvent.getSource().getValue();
+            new CheckWishesService(user, market).start();
+
             Stage stage = (Stage) tabPane.getScene().getWindow();
             URL url = getClass().getResource("../views/storeView.fxml");
 
@@ -134,6 +139,4 @@ public class LoginController implements Controller {
             System.out.println(workerStateEvent.getSource().getException().getMessage());
         }
     }
-
-
 }
