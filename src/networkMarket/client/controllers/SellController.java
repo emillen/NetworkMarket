@@ -84,11 +84,13 @@ public class SellController implements Controller {
 
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
+
+            Item item = (Item) workerStateEvent.getSource().getValue();
             try {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information Dialog");
                 alert.setHeaderText("Hey, " + user.getName() + "!");
-                alert.setContentText("I have a great message for you!");
+                alert.setContentText(item.getName() + " " + item.getPrice() + "kr has been sold");
 
                 alert.showAndWait();
             } catch (Exception e) {
