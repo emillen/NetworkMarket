@@ -99,9 +99,7 @@ public class StoreController implements Controller {
 
         UnregisterService service = new UnregisterService(user, market);
         service.start();
-
-
-
+        switchToLoginView();
     }
 
     @FXML
