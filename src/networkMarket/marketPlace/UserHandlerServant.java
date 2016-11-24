@@ -25,8 +25,13 @@ public class UserHandlerServant extends UnicastRemoteObject implements UserHandl
     public void logIn(User user) throws RemoteException, UserException {
 
         if (userExists(user) &&
-                users.get(user.getName()).getPassword().equals(user.getPassword()))
+                users.get(user.getName()).getPassword().equals(user.getPassword())) {
+
+            if (user != users.get(user.getName()))
+                users.put(user.getName(), user);
             return;
+
+        }
 
         throw new UserException("Username and password does not match");
     }
