@@ -37,7 +37,7 @@ class StoreServant extends UnicastRemoteObject implements Store {
 
         checkUser(seller);
         Item item = new ItemServant(name, price, seller);
-        //notifyWishList(item);
+        checkWishes(item);
         items.add(item);
         return item;
     }
@@ -84,6 +84,20 @@ class StoreServant extends UnicastRemoteObject implements Store {
             return wishlist.get(user.getName());
 
         return null;
+    }
+
+    private void checkWishes(Item item) throws RemoteException {
+
+        List<List<Wish>> allWishes = new ArrayList<>(wishlist.values());
+
+        for (List<Wish> l : allWishes) {
+            for (Wish w : l) {
+
+                if (w.getPrice() == item.getPrice() && w.getItemName().equals(w.getItemName())) {
+                    w.setBeenFound(true);
+                }
+            }
+        }
     }
 
     private void checkUser(User user) throws RemoteException, UserException {

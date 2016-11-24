@@ -34,4 +34,9 @@ public class WishServant extends UnicastRemoteObject implements Wish {
     public boolean beenFound() throws RemoteException {
         return hasBeenFound;
     }
+
+    @Override
+    public void setBeenFound(boolean beenFound) throws RemoteException {
+        hasBeenFound = beenFound;
+    }
 }
