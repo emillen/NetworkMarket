@@ -21,9 +21,8 @@ public class UserServant extends UnicastRemoteObject implements User {
     private Stage stage;
 
 
-    public UserServant(String name, Account bankAccount, String password) throws RemoteException {
+    public UserServant(String name, String password) throws RemoteException {
         this.name = name;
-        this.bankAccount = bankAccount;
         this.password = password;
     }
 
