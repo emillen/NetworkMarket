@@ -54,7 +54,6 @@ class StoreServant extends UnicastRemoteObject implements Store {
                 buyer.getBankAccount().withdraw((float) item.getPrice());
                 item.getSeller().getBankAccount().deposit((float) item.getPrice());
                 items.remove(i);
-                item.getSeller().notifySoldItem();
                 item.setIsSold(true);
                 break;
             }

@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -36,21 +37,27 @@ public class StoreController implements Controller {
     @FXML
     Button sellButton;
     @FXML
+    Button wishButton;
+    @FXML
     ListView<String> itemList;
     @FXML
     Text warningText;
+
 
     @Override
     public void init(User user, MarketPlace market) {
         this.user = user;
         this.market = market;
         this.items = new ArrayList<>();
+        updateView();
+    }
+
+    @FXML
+    private void updateView(){
         GetItemsService service = new GetItemsService(user, market);
         service.setOnSucceeded(new GetItemSuccess());
         service.setOnFailed(new GetItemFailure());
         service.start();
-        try{
-        user.notifySoldItem();} catch (Exception e){}
     }
 
 
