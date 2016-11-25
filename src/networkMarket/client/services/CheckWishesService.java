@@ -40,7 +40,6 @@ public class CheckWishesService extends Service<Wish> {
                 if (myWishList != null)
                     for (Wish w : myWishList) {
                         if (w.beenFound()) {
-                            System.out.println("Hueheuhe");
                             foundWish = w;
                             market.getStore().removeFromWishList(w, user);
                             break;

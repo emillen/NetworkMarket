@@ -103,7 +103,7 @@ public class SellController implements Controller {
 
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
-            System.out.println("Shit failed bitch");
+            System.out.println("The item could not be sold ");
         }
     }
 }
