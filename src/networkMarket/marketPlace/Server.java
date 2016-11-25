@@ -24,7 +24,7 @@ public class Server {
 
             Naming.bind("MarketPlace", market);
 
-            System.out.println("We are ready to go fgt");
+            System.out.println("Server is ready to go");
         } catch (Exception e) {
             e.printStackTrace();
         }

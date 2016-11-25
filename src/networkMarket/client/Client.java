@@ -39,7 +39,7 @@ public class Client extends Application {
             }
 
             market = (MarketPlace) Naming.lookup("MarketPlace");
-            System.out.println("We are ready to go bitch");
+            System.out.println("Client is ready to go");
             launch(args);
         } catch (Exception e) {
             e.printStackTrace();
