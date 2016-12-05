@@ -30,7 +30,7 @@ public class UserHandlerServant extends UnicastRemoteObject implements UserHandl
 
         User user = em.createNamedQuery("findUserWithName", User.class)
                 .setParameter("name", username).getSingleResult();
-        if(user == null || !user.getPassword().equals(password))
+        if (user == null || !user.getPassword().equals(password))
             throw new UserException("Username and password does not match");
 
         return user;
@@ -57,8 +57,11 @@ public class UserHandlerServant extends UnicastRemoteObject implements UserHandl
     @Override
     public void unregister(User user) throws RemoteException, UserException {
 
-    }
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
 
+        em.createNamedQuery("deleteUserWithName", User.class).setParameter("name", user.getName());
+    }
 
     @Override
     public boolean userExists(String username) throws RemoteException {
