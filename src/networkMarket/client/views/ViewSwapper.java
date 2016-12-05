@@ -1,6 +1,5 @@
 package networkMarket.client.views;
 
-import com.sun.media.jfxmedia.events.MarkerEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

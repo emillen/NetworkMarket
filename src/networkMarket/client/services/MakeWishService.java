@@ -2,7 +2,6 @@ package networkMarket.client.services;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import networkMarket.client.controllers.MakeWishController;
 import networkMarket.interfaces.MarketPlace;
 import networkMarket.interfaces.User;
 

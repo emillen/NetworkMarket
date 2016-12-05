@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -21,7 +20,6 @@ import networkMarket.interfaces.Item;
 import networkMarket.interfaces.MarketPlace;
 import networkMarket.interfaces.User;
 
-import javax.swing.text.View;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ArrayList;

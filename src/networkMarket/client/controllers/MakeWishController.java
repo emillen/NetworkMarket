@@ -10,7 +10,6 @@ import networkMarket.client.views.ViewSwapper;
 import networkMarket.interfaces.MarketPlace;
 import networkMarket.interfaces.User;
 
-import javax.swing.text.View;
 import java.net.URL;
 
 

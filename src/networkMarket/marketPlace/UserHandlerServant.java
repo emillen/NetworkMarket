@@ -4,7 +4,6 @@ import networkMarket.interfaces.User;
 import networkMarket.interfaces.UserHandler;
 import networkMarket.marketPlace.exceptions.UserException;
 
-import javax.jws.soap.SOAPBinding;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;

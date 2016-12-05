@@ -1,9 +1,6 @@
 package networkMarket.marketPlace;
 
-import javafx.scene.control.Alert;
-import javafx.stage.Stage;
 import networkMarket.interfaces.Account;
-import networkMarket.interfaces.Item;
 import networkMarket.interfaces.User;
 
 import java.rmi.RemoteException;
