@@ -2,7 +2,13 @@ package networkMarket.marketPlace;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.rmi.RemoteException;
+
+@NamedQueries({
+        @NamedQuery(
+                name = "findAllItems",
+                query = "SELECT item FROM Item item"
+        )
+})
 
 @Entity(name = "Item")
 public class Item implements Serializable {
