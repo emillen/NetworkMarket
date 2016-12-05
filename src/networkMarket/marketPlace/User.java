@@ -6,10 +6,20 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by daseel on 2016-11-11.
- */
-
+@NamedQueries({
+        @NamedQuery(
+                name = "findUserWithName",
+                query = "SELECT user FROM User user WHERE user.name LIKE :name"
+        ),
+        @NamedQuery(
+                name = "deleteUserWithName",
+                query = "DELETE FROM User user WHERE user.name LIKE :name"
+        ),
+        @NamedQuery(
+                name = "findAllUsers",
+                query = "SELECT user FROM User user"
+        )
+})
 
 @Entity(name = "User")
 public class User implements Serializable {
