@@ -6,6 +6,9 @@ import networkMarket.interfaces.UserHandler;
 import networkMarket.interfaces.Wish;
 import networkMarket.marketPlace.exceptions.UserException;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
@@ -17,14 +20,19 @@ class StoreServant extends UnicastRemoteObject implements Store {
 
 
     private UserHandler userHandler;
+    private EntityManagerFactory emf;
 
     StoreServant(UserHandler userHandler) throws RemoteException {
+        this.emf = Persistence.createEntityManagerFactory("NetworkMarket");
         this.userHandler = userHandler;
     }
 
     @Override
     public synchronized List<Item> getItems(User viewer) throws RemoteException, UserException {
-        return null;
+        checkUser(viewer);
+
+        EntityManager em = emf.createEntityManager();
+        return em.createNamedQuery("findAllItems", Item.class).getResultList();
     }
 
     @Override
@@ -58,8 +66,7 @@ class StoreServant extends UnicastRemoteObject implements Store {
     }
 
     private void checkUser(User user) throws RemoteException, UserException {
-
-        if (!userHandler.userExists(user.getName()))
-            throw new UserException("You are not logged in dawg");
+        if (!userHandler.userLoggedIn(user))
+            throw new UserException("Not logged in");
     }
 }
