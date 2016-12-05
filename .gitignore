@@ -36,7 +36,6 @@ tests
 
 # Gradle:
 .idea/gradle.xml
-.idea/libraries
 
 # Mongo Explorer plugin:
 .idea/mongoSettings.xml
@@ -61,4 +60,8 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-/.idea/
+/.idea/compiler.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/copyright/profiles_settings.xml
+/resources/META-INF/persistence.xml
