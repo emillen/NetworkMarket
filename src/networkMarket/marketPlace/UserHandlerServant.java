@@ -24,7 +24,16 @@ public class UserHandlerServant extends UnicastRemoteObject implements UserHandl
 
     @Override
     public User logIn(String username, String password) throws RemoteException, UserException {
-        return null;
+
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        User user = em.createNamedQuery("findUserWithName", User.class)
+                .setParameter("name", username).getSingleResult();
+        if(user == null || !user.getPassword().equals(password))
+            throw new UserException("Username and password does not match");
+
+        return user;
     }
 
     @Override
