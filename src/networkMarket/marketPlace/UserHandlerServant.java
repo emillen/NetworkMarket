@@ -64,7 +64,11 @@ public class UserHandlerServant extends UnicastRemoteObject implements UserHandl
     }
 
     @Override
-    public boolean userExists(String username) throws RemoteException {
-        return false;
+    public boolean userLoggedIn(User user) throws RemoteException {
+        EntityManager em = emf.createEntityManager();
+        User storedUser = em.createNamedQuery("findUserWithName", User.class)
+                .setParameter("name", user.getName()).getSingleResult();
+
+        return (storedUser == null || !storedUser.getPassword().equals(user.getPassword()));
     }
 }

@@ -17,5 +17,5 @@ public interface UserHandler extends Remote {
 
     void unregister(User user) throws RemoteException, UserException;
 
-    boolean userExists(String username) throws RemoteException;
+    boolean userLoggedIn(User user) throws RemoteException;
 }
