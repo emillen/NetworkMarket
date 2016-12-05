@@ -24,7 +24,7 @@ public class UserHandlerServant extends UnicastRemoteObject implements UserHandl
 
     @Override
     public User logIn(String username, String password) throws RemoteException, UserException {
-        return null
+        return null;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class UserHandlerServant extends UnicastRemoteObject implements UserHandl
             List<User> existingUsers = em.createNamedQuery("findUserWithName", User.class)
                     .setParameter("name", username).getResultList();
             if (existingUsers.size() > 0)
-                throw new UserException("Username and password does not match");
+                throw new UserException("Username already exists");
 
             User newUser = new User(username, password);
             em.persist(newUser);
