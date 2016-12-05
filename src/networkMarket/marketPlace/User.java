@@ -4,7 +4,7 @@ import networkMarket.interfaces.Account;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.rmi.RemoteException;
+import java.util.List;
 
 /**
  * Created by daseel on 2016-11-11.
@@ -13,40 +13,42 @@ import java.rmi.RemoteException;
 
 @Entity(name = "User")
 public class User implements Serializable {
-    private Account bankAccount;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private long id;
 
-    @Column(name="username")
+    @Column
     private String name;
 
-    @Column(name="password")
+    @Column
     private String password;
+
+    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
+    private List<Item> soldItems;
+    @OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL)
+    private List<Item> boughtItems;
 
     public User() {
 
     }
 
-    public User(String name, String password) throws RemoteException {
+    public User(String name, String password) {
         this.name = name;
         this.password = password;
     }
 
-    public Account getBankAccount() throws RemoteException {
-        return bankAccount;
+    public Account getBankAccount() {
+        //  return bankAccount;
+        return null;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getPassword() throws RemoteException {
+    public String getPassword() {
         return password;
     }
 
-    public void setBankAccount(Account acc) throws RemoteException {
-        bankAccount = acc;
-    }
 }

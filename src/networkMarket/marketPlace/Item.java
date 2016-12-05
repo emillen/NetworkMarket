@@ -8,47 +8,51 @@ import java.rmi.RemoteException;
 public class Item implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private long id;
 
 
-    @Column(name = "name", nullable = false)
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "price", nullable = false)
+    @Column(nullable = false)
     private float price;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "seller", nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(nullable = false)
     private User seller;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "buyer", nullable = true)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn
     private User buyer;
 
     protected Item() {
     }
 
-    public Item(String name, float price, User seller) throws RemoteException {
+    public Item(String name, float price, User seller) {
         this.name = name;
         this.price = price;
         this.seller = seller;
     }
 
-    public synchronized double getPrice() throws RemoteException {
+    public double getPrice() {
         return price;
     }
 
-    public synchronized String getName() throws RemoteException {
+    public String getName() {
         return name;
     }
 
-    public synchronized User getSeller() throws RemoteException {
+    public User getSeller() {
         return seller;
     }
 
-    public boolean isSold() throws RemoteException {
+    public boolean isSold() {
         return buyer == null;
+    }
+
+    public void setbuyer(User buyer) {
+        this.buyer = buyer;
     }
 }
