@@ -15,6 +15,7 @@ import java.util.List;
  */
 class StoreServant extends UnicastRemoteObject implements Store {
 
+
     private List<Item> items;
     private UserHandler userHandler;
     private HashMap<String, List<Wish>> wishlist;
@@ -36,7 +37,7 @@ class StoreServant extends UnicastRemoteObject implements Store {
     public synchronized Item addItem(String name, double price, User seller) throws RemoteException, UserException {
 
         checkUser(seller);
-        Item item = new ItemServant(name, price, seller);
+        Item item = new Item(name, price, seller);
         checkWishes(item);
         items.add(item);
         return item;

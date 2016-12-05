@@ -1,44 +1,51 @@
 package networkMarket.marketPlace;
 
 import networkMarket.interfaces.Account;
-import networkMarket.interfaces.User;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 
 /**
  * Created by daseel on 2016-11-11.
  */
 
-@SuppressWarnings("serial")
-public class UserServant extends UnicastRemoteObject implements User {
 
-    private String name;
+@Entity(name = "User")
+public class User implements Serializable {
     private Account bankAccount;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    private long id;
+
+    @Column(name="username")
+    private String name;
+
+    @Column(name="password")
     private String password;
 
+    public User() {
 
-    public UserServant(String name, String password) throws RemoteException {
+    }
+
+    public User(String name, String password) throws RemoteException {
         this.name = name;
         this.password = password;
     }
 
-    @Override
     public Account getBankAccount() throws RemoteException {
         return bankAccount;
     }
 
-    @Override
     public String getName() {
         return name;
     }
 
-    @Override
     public String getPassword() throws RemoteException {
         return password;
     }
 
-    @Override
     public void setBankAccount(Account acc) throws RemoteException {
         bankAccount = acc;
     }
