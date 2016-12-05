@@ -12,6 +12,9 @@ import java.rmi.registry.LocateRegistry;
 public class Server {
 
     public Server() {
+
+
+
         try {
 
             try {
@@ -30,7 +33,9 @@ public class Server {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  throws Exception{
+
+        Class.forName("com.mysql.jdbc.Driver");
         new Server();
     }
 }
