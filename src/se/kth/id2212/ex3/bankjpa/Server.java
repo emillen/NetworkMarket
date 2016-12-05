@@ -11,7 +11,7 @@ public class Server
 
     public static void main(String[] args) throws Exception
     {
-        Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+        Class.forName("com.mysql.jdbc.Driver");
         String bankname = (args.length > 0) ? args[0] : BANK;
         if (bankname.equalsIgnoreCase("-h"))
         {
