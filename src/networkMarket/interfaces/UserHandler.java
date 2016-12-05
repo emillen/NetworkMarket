@@ -1,5 +1,6 @@
 package networkMarket.interfaces;
 
+import networkMarket.marketPlace.User;
 import networkMarket.marketPlace.exceptions.UserException;
 
 import java.rmi.Remote;
