@@ -1,7 +1,5 @@
 package networkMarket.marketPlace;
 
-import networkMarket.interfaces.Account;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -46,11 +44,6 @@ public class User implements Serializable {
     public User(String name, String password) {
         this.name = name;
         this.password = password;
-    }
-
-    public Account getBankAccount() {
-        //  return bankAccount;
-        return null;
     }
 
     public String getName() {
