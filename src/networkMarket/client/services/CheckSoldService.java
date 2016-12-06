@@ -2,7 +2,7 @@ package networkMarket.client.services;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import networkMarket.interfaces.Item;
+import networkMarket.marketPlace.Item;
 
 /**
  * Created by daseel on 11/24/16.
