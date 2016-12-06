@@ -1,7 +1,7 @@
 package networkMarket.client.controllers;
 
 import networkMarket.interfaces.MarketPlace;
-import networkMarket.interfaces.User;
+import networkMarket.marketPlace.User;
 
 /**
  * Created by daseel on 11/22/16.

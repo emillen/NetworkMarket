@@ -16,9 +16,9 @@ import networkMarket.client.services.BuyService;
 import networkMarket.client.services.GetItemsService;
 import networkMarket.client.services.UnregisterService;
 import networkMarket.client.views.ViewSwapper;
-import networkMarket.interfaces.Item;
+import networkMarket.marketPlace.Item;
 import networkMarket.interfaces.MarketPlace;
-import networkMarket.interfaces.User;
+import networkMarket.marketPlace.User;
 
 import java.net.URL;
 import java.rmi.RemoteException;
@@ -120,13 +120,13 @@ public class StoreController implements Controller {
     private ObservableList<String> getObservableList(List<Item> items) {
 
         ObservableList<String> list = FXCollections.observableArrayList();
-        for (Item i : items) {
+        /*for (Item i : items) {
             try {
                 list.add(i.getName() + " " + i.getPrice() + "kr");
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
 
         return list;
     }
@@ -179,14 +179,11 @@ public class StoreController implements Controller {
 
         boolean hasBankAccount = true;
 
-        try {
-            if (user.getBankAccount() == null) {
-                hasBankAccount = false;
-            }
 
-        } catch (RemoteException e) {
-            switchToLoginView();
-        }
+        /*if (user.getBankAccount() == null) {
+            hasBankAccount = false;
+        }*/
+
 
         return hasBankAccount;
     }

@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import networkMarket.client.services.MakeWishService;
 import networkMarket.client.views.ViewSwapper;
 import networkMarket.interfaces.MarketPlace;
-import networkMarket.interfaces.User;
+import networkMarket.marketPlace.User;
 
 import java.net.URL;
 

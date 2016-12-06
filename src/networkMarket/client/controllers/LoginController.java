@@ -10,7 +10,7 @@ import networkMarket.client.services.LoginService;
 import networkMarket.client.services.RegisterService;
 import networkMarket.client.views.ViewSwapper;
 import networkMarket.interfaces.MarketPlace;
-import networkMarket.interfaces.User;
+import networkMarket.marketPlace.User;
 
 import java.net.URL;
 

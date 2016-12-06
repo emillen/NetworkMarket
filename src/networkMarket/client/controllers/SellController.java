@@ -9,9 +9,9 @@ import javafx.stage.Stage;
 import networkMarket.client.services.CheckSoldService;
 import networkMarket.client.services.SellService;
 import networkMarket.client.views.ViewSwapper;
-import networkMarket.interfaces.Item;
+import networkMarket.marketPlace.Item;
 import networkMarket.interfaces.MarketPlace;
-import networkMarket.interfaces.User;
+import networkMarket.marketPlace.User;
 
 import java.net.URL;
 
