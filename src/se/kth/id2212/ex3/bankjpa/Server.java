@@ -29,7 +29,7 @@ public class Server
                 LocateRegistry.createRegistry(1099);
             }
             Naming.rebind(bankname, bankobj);
-            System.out.println(bankobj + " is ready.");
+            System.out.println(bankobj + " " + bankname + " is ready.");
         } catch (Exception e)
         {
             e.printStackTrace();

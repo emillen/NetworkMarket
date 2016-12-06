@@ -80,7 +80,7 @@ public class Account implements Serializable
         }
 
         balance -= value;
-        System.out.println("Transaction: Account " + owner.getName() + ": deposit: $" +
+        System.out.println("Transaction: Account " + owner.getName() + ": withdraw: $" +
                 value + ", balance: $" + balance);
     }
 
