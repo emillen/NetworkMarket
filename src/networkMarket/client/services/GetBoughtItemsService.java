@@ -13,12 +13,12 @@ import java.util.List;
 /**
  * Created by daseel on 11/23/16.
  */
-public class GetSoldItemsService extends Service<List<Item>> {
+public class GetBoughtItemsService extends Service<List<Item>> {
 
     private User user;
     private MarketPlace market;
 
-    public GetSoldItemsService(User user, MarketPlace market) {
+    public GetBoughtItemsService(User user, MarketPlace market) {
         this.user = user;
         this.market = market;
     }
@@ -30,7 +30,7 @@ public class GetSoldItemsService extends Service<List<Item>> {
             protected List<Item> call() throws Exception {
 
                 try {
-                    return market.getStore().getItems(user);
+                    return market.getStore().getGetItemsFromBuyer(user);
                 } catch (NoResultException e) {
                     return new ArrayList<>();
                 }
