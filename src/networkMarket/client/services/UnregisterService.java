@@ -3,7 +3,7 @@ package networkMarket.client.services;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import networkMarket.interfaces.MarketPlace;
-import networkMarket.interfaces.User;
+import networkMarket.marketPlace.User;
 
 /**
  * Created by daseel on 11/24/16.
