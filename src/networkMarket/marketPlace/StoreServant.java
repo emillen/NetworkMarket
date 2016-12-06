@@ -2,7 +2,6 @@ package networkMarket.marketPlace;
 
 import networkMarket.interfaces.Store;
 import networkMarket.interfaces.UserHandler;
-import networkMarket.interfaces.Wish;
 import networkMarket.marketPlace.exceptions.UserException;
 import se.kth.id2212.ex3.bankjpa.Bank;
 import se.kth.id2212.ex3.bankjpa.RejectedException;
@@ -105,26 +104,10 @@ class StoreServant extends UnicastRemoteObject implements Store {
         em.getTransaction().commit();
     }
 
-    @Override
-    public void wishItem(String name, float price, User user) throws RemoteException, UserException {
-    }
-
-    @Override
-    public List<Wish> getMyWishes(User user) throws RemoteException {
-
-        return null;
-    }
-
-    private void checkWishes(Item item) throws RemoteException {
-
-    }
-
-    @Override
-    public void removeFromWishList(Wish wish, User user) throws RemoteException {
-    }
-
     private void checkUser(User user) throws RemoteException, UserException {
         if (!userHandler.userLoggedIn(user))
             throw new UserException("Not logged in");
     }
+
+
 }
