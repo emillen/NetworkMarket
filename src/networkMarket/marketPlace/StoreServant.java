@@ -48,6 +48,16 @@ class StoreServant extends UnicastRemoteObject implements Store {
     }
 
     @Override
+    public List<Item> getItemsFromSeller(User seller) throws RemoteException, UserException {
+        return null;
+    }
+
+    @Override
+    public List<Item> getGetItemsFromBuyer(User buyer) throws RemoteException, UserException {
+        return null;
+    }
+
+    @Override
     public synchronized Item addItem(String name, float price, User seller) throws RemoteException, UserException {
         checkUser(seller);
 
