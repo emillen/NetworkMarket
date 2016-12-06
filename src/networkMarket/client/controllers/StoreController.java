@@ -16,12 +16,11 @@ import networkMarket.client.services.BuyService;
 import networkMarket.client.services.GetItemsService;
 import networkMarket.client.services.UnregisterService;
 import networkMarket.client.views.ViewSwapper;
-import networkMarket.marketPlace.Item;
 import networkMarket.interfaces.MarketPlace;
+import networkMarket.marketPlace.Item;
 import networkMarket.marketPlace.User;
 
 import java.net.URL;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,7 +79,7 @@ public class StoreController implements Controller {
 
         if (!hasBankAccount(user)) {
             Stage stage = (Stage) sellButton.getScene().getWindow();
-            URL url = getClass().getResource("../views/addBankAccountView.fxml");
+            URL url = getClass().getResource("../views/depositToAccountView.fxml");
             ViewSwapper.swap(user, market, stage, url);
             return;
         }
@@ -162,7 +161,7 @@ public class StoreController implements Controller {
 
                 if (!hasBankAccount(user)) {
                     Stage stage = (Stage) itemList.getScene().getWindow();
-                    URL url = getClass().getResource("../views/addBankAccountView.fxml");
+                    URL url = getClass().getResource("../views/depositToAccountView.fxml");
                     ViewSwapper.swap(user, market, stage, url);
                 }
                 int index = itemList.getSelectionModel().getSelectedIndices().get(0);
