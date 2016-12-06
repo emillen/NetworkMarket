@@ -32,11 +32,13 @@ public class DepositToBankService extends Service<Void> {
                 Bank bank = (Bank) Naming.lookup("Nordea");
                 System.out.println("Bank is on");
                 try {
+                    System.out.println("Trying to create account");
                     bank.newAccount(user.getName());
                 } catch (RejectedException e) {
-                    bank.deposit(user.getName(), toDeposit);
+                    System.out.println("Account existed");
                 }
-
+                System.out.println("Depositing into account");
+                bank.deposit(user.getName(), toDeposit);
                 return null;
             }
         };
