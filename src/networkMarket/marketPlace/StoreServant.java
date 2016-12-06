@@ -36,19 +36,37 @@ class StoreServant extends UnicastRemoteObject implements Store {
     }
 
     @Override
-    public synchronized Item addItem(String name, double price, User seller) throws RemoteException, UserException {
+    public synchronized Item addItem(String name, float price, User seller) throws RemoteException, UserException {
+        checkUser(seller);
 
-        return null;
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        Item item = new Item(name, price, seller);
+
+        em.persist(item);
+
+        em.getTransaction().commit();
+
+        return item;
     }
 
 
     @Override
     public synchronized void buyItem(Item item, User buyer) throws RemoteException, RejectedException, UserException {
 
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        checkUser(buyer);
+
+        item.setbuyer(buyer);
+
+        em.getTransaction().commit();
     }
 
     @Override
-    public void wishItem(String name, double price, User user) throws RemoteException, UserException {
+    public void wishItem(String name, float price, User user) throws RemoteException, UserException {
     }
 
     @Override
