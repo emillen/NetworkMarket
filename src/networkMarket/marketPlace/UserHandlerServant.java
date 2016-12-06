@@ -5,6 +5,7 @@ import networkMarket.marketPlace.exceptions.UserException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -26,7 +27,6 @@ public class UserHandlerServant extends UnicastRemoteObject implements UserHandl
     public User logIn(String username, String password) throws RemoteException, UserException {
 
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
 
         User user = em.createNamedQuery("findUserWithName", User.class)
                 .setParameter("name", username).getSingleResult();
@@ -61,14 +61,19 @@ public class UserHandlerServant extends UnicastRemoteObject implements UserHandl
         em.getTransaction().begin();
 
         em.createNamedQuery("deleteUserWithName", User.class).setParameter("name", user.getName());
+        em.getTransaction().commit();
     }
 
     @Override
     public boolean userLoggedIn(User user) throws RemoteException {
         EntityManager em = emf.createEntityManager();
-        User storedUser = em.createNamedQuery("findUserWithName", User.class)
-                .setParameter("name", "blu").getSingleResult();
 
-        return (storedUser != null && storedUser.getPassword().equals(user.getPassword()));
+        try {
+            User storedUser = em.createNamedQuery("findUserWithName", User.class)
+                    .setParameter("name", user.getName()).getSingleResult();
+            return storedUser.getPassword().equals(user.getPassword());
+        } catch(NoResultException e){
+            return false;
+        }
     }
 }
