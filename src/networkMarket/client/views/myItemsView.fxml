@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<BorderPane fx:controller="networkMarket.client.controllers.MyItemsController" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+          <tabs>
+              <Tab text="My Sold Items">
+                  <content>
+                      <ListView prefHeight="200.0" prefWidth="200.0" />
+                  </content>
+              </Tab>
+              <Tab text="My Bought Items">
+                  <content>
+                      <ListView prefHeight="200.0" prefWidth="200.0" />
+                  </content>
+              </Tab>
+          </tabs>
+      </TabPane>
+   </center>
+   <bottom>
+      <Button fx:id="backButton" mnemonicParsing="false" text="Back" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="20.0" />
+         </BorderPane.margin>
+      </Button>
+   </bottom>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</BorderPane>
