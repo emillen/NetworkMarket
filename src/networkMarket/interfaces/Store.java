@@ -1,9 +1,9 @@
 package networkMarket.interfaces;
 
-import networkMarket.bank.exceptions.RejectedException;
 import networkMarket.marketPlace.Item;
 import networkMarket.marketPlace.User;
 import networkMarket.marketPlace.exceptions.UserException;
+import se.kth.id2212.ex3.bankjpa.RejectedException;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
