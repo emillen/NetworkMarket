@@ -42,7 +42,7 @@ public class Item implements Serializable {
         this.seller = seller;
     }
 
-    public double getPrice() {
+    public float getPrice() {
         return price;
     }
 
