@@ -60,8 +60,8 @@ class StoreServant extends UnicastRemoteObject implements Store {
         checkUser(buyer);
 
         EntityManager em = emf.createEntityManager();
-        return em.createNamedQuery("findItemsFromSeller", Item.class)
-                .setParameter("sellerName", buyer.getName()).getResultList();
+        return em.createNamedQuery("findItemsFromBuyer", Item.class)
+                .setParameter("buyerName", buyer.getName()).getResultList();
     }
 
     @Override

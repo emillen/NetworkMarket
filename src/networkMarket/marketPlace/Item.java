@@ -18,7 +18,7 @@ import java.io.Serializable;
         ),
         @NamedQuery(
                 name = "findItemsFromBuyer",
-                query = "SELECT item FROM Item item WHERE item.seller.name LIKE :buyerName"
+                query = "SELECT item FROM Item item WHERE item.buyer.name LIKE :buyerName"
         )
 })
 
