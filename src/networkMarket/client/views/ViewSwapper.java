@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import networkMarket.client.controllers.Controller;
 import networkMarket.interfaces.MarketPlace;
-import networkMarket.interfaces.User;
+import networkMarket.marketPlace.User;
 
 import java.io.IOException;
 import java.net.URL;
