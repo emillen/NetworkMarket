@@ -1,6 +1,7 @@
 package networkMarket.marketPlace;
 
 import networkMarket.interfaces.MarketPlace;
+import se.kth.id2212.ex3.bankjpa.Bank;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -26,6 +27,8 @@ public class Server {
             MarketPlace market = new MarketPlaceServant();
 
             Naming.bind("MarketPlace", market);
+
+            Bank bank = (Bank) Naming.lookup("Nordea");
 
             System.out.println("Server is ready to go");
         } catch (Exception e) {

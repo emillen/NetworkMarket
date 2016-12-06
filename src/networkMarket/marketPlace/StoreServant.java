@@ -30,13 +30,7 @@ class StoreServant extends UnicastRemoteObject implements Store {
 
     StoreServant(UserHandler userHandler) throws RemoteException {
         try {
-            try {
-                LocateRegistry.getRegistry(1099).list();
-
-            } catch (RemoteException e) {
-                LocateRegistry.createRegistry(1099);
-                System.out.println(e.getMessage());
-            }
+            LocateRegistry.getRegistry(1099).list();
             this.bank = (Bank) Naming.lookup("Nordea");
         } catch (Exception e) {
             e.printStackTrace();
@@ -60,7 +54,10 @@ class StoreServant extends UnicastRemoteObject implements Store {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
-        Item item = new Item(name, price, seller);
+        User storedSeller = em.createNamedQuery("findUserWithName", User.class)
+                .setParameter("name", seller.getName()).getSingleResult();
+
+        Item item = new Item(name, price, storedSeller);
 
         em.persist(item);
 
@@ -78,9 +75,14 @@ class StoreServant extends UnicastRemoteObject implements Store {
 
         checkUser(buyer);
 
+        User storedBuyer = em.createNamedQuery("findUserWithName", User.class)
+                .setParameter("name", buyer.getName()).getSingleResult();
+        Item storedItem = em.createNamedQuery("findItemWithID", Item.class)
+                .setParameter("id", item.getId()).getSingleResult();
+
         bank.withdraw(buyer.getName(), item.getPrice());
         bank.deposit(item.getSeller().getName(), item.getPrice());
-        item.setbuyer(buyer);
+        storedItem.setbuyer(storedBuyer);
 
         em.getTransaction().commit();
     }

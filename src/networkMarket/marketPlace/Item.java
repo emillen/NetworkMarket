@@ -7,6 +7,10 @@ import java.io.Serializable;
         @NamedQuery(
                 name = "findAllItems",
                 query = "SELECT item FROM Item item WHERE item.buyer IS NULL"
+        ),
+        @NamedQuery(
+                name = "findItemWithID",
+                query = "SELECT item FROM Item item WHERE item.id = :id"
         )
 })
 
@@ -25,15 +29,19 @@ public class Item implements Serializable {
     @Column(nullable = false)
     private float price;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(nullable = false)
     private User seller;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn
     private User buyer;
 
     protected Item() {
+    }
+
+    long getId(){
+        return id;
     }
 
     public Item(String name, float price, User seller) {

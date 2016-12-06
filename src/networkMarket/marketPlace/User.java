@@ -1,5 +1,7 @@
 package networkMarket.marketPlace;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -26,9 +28,11 @@ public class User implements Serializable {
     @Column(nullable = false)
     private long id;
 
-    @Column
+    @NotNull
+    @Column(unique = true)
     private String name;
 
+    @NotNull
     @Column
     private String password;
 
