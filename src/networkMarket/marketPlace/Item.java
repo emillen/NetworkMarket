@@ -71,7 +71,7 @@ public class Item implements Serializable {
     }
 
     public boolean isSold() {
-        return buyer == null;
+        return buyer != null;
     }
 
     public void setbuyer(User buyer) {
