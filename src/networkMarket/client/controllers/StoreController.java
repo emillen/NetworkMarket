@@ -23,7 +23,6 @@ import se.kth.id2212.ex3.bankjpa.RejectedException;
 
 import java.net.URL;
 import java.rmi.Naming;
-import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.util.ArrayList;
 import java.util.List;

@@ -2,9 +2,9 @@ package networkMarket.client.services;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import networkMarket.marketPlace.Item;
 import networkMarket.interfaces.MarketPlace;
 import networkMarket.interfaces.Store;
+import networkMarket.marketPlace.Item;
 import networkMarket.marketPlace.User;
 
 /**

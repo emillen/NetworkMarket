@@ -9,7 +9,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -72,7 +71,7 @@ public class UserHandlerServant extends UnicastRemoteObject implements UserHandl
             User storedUser = em.createNamedQuery("findUserWithName", User.class)
                     .setParameter("name", user.getName()).getSingleResult();
             return storedUser.getPassword().equals(user.getPassword());
-        } catch(NoResultException e){
+        } catch (NoResultException e) {
             return false;
         }
     }

@@ -8,13 +8,13 @@ import networkMarket.marketPlace.User;
 /**
  * Created by daseel on 11/24/16.
  */
-public class UnregisterService extends Service<Void>{
+public class UnregisterService extends Service<Void> {
 
     private MarketPlace marketPlace;
     private User user;
 
 
-    public UnregisterService(User user, MarketPlace marketPlace){
+    public UnregisterService(User user, MarketPlace marketPlace) {
 
         this.user = user;
         this.marketPlace = marketPlace;

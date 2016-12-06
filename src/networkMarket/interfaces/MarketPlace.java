@@ -9,5 +9,6 @@ import java.rmi.RemoteException;
 public interface MarketPlace extends Remote {
 
     UserHandler getUserHandler() throws RemoteException;
+
     Store getStore() throws RemoteException;
 }

@@ -2,8 +2,8 @@ package networkMarket.client.services;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import networkMarket.marketPlace.Item;
 import networkMarket.interfaces.MarketPlace;
+import networkMarket.marketPlace.Item;
 import networkMarket.marketPlace.User;
 
 import javax.persistence.NoResultException;

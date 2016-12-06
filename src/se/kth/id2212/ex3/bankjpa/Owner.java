@@ -4,8 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity(name = "Owner")
-public class Owner implements Serializable
-{
+public class Owner implements Serializable {
     private static final long serialVersionUID = 706795289816654474L;
 
     @Id
@@ -20,18 +19,15 @@ public class Owner implements Serializable
     @Column(name = "OPTLOCK")
     private int versionNum;
 
-    public Owner()
-    {
+    public Owner() {
         this(null);
     }
 
-    public Owner(String name)
-    {
+    public Owner(String name) {
         this.name = name;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 }

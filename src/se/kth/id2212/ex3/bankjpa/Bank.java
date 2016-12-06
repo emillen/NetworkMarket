@@ -3,8 +3,7 @@ package se.kth.id2212.ex3.bankjpa;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface Bank extends Remote
-{
+public interface Bank extends Remote {
     public Account newAccount(String ownerName) throws RemoteException, RejectedException;
 
     public Account findAccount(String ownerName) throws RemoteException;

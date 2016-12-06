@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import networkMarket.client.services.GetBoughtItemsService;
-import networkMarket.client.services.GetItemsService;
 import networkMarket.client.services.GetSoldItemsService;
 import networkMarket.client.views.ViewSwapper;
 import networkMarket.interfaces.MarketPlace;

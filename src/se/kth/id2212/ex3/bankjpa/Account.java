@@ -16,8 +16,7 @@ import java.io.Serializable;
 })
 
 @Entity(name = "Account")
-public class Account implements Serializable
-{
+public class Account implements Serializable {
     private static final long serialVersionUID = -4302632166699642491L;
 
     @Id
@@ -36,26 +35,21 @@ public class Account implements Serializable
     @Column(name = "OPTLOCK")
     private int versionNum;
 
-    public Account()
-    {
+    public Account() {
         this(null, 0);
     }
 
-    public Account(Owner owner, float balance)
-    {
+    public Account(Owner owner, float balance) {
         this.owner = owner;
         this.balance = balance;
     }
 
-    public float getBalance()
-    {
+    public float getBalance() {
         return balance;
     }
 
-    public void deposit(float value) throws RejectedException
-    {
-        if (value < 0)
-        {
+    public void deposit(float value) throws RejectedException {
+        if (value < 0) {
             throw new RejectedException("Rejected: Account " + owner.getName() +
                     ": Illegal value: " + value);
         }
@@ -65,16 +59,13 @@ public class Account implements Serializable
                 value + ", balance: $" + balance);
     }
 
-    public void withdraw(float value) throws RejectedException
-    {
-        if (value < 0)
-        {
+    public void withdraw(float value) throws RejectedException {
+        if (value < 0) {
             throw new RejectedException("Rejected: Account " + owner.getName() +
                     ": Illegal value: " + value);
         }
 
-        if ((balance - value) < 0)
-        {
+        if ((balance - value) < 0) {
             throw new RejectedException("Rejected: Account " + owner.getName() +
                     ": Negative balance on withdraw: " + (balance - value));
         }
@@ -84,8 +75,7 @@ public class Account implements Serializable
                 value + ", balance: $" + balance);
     }
 
-    public String toString()
-    {
+    public String toString() {
         return "Account for " + owner.getName() + " has balance $" + balance;
     }
 }

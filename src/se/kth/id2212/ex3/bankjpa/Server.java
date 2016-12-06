@@ -4,34 +4,27 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
-public class Server
-{
+public class Server {
     static final String USAGE = "java bankrmi.Server [rmi-URL of a bank]";
     static final String BANK = "Nordea";
 
-    public static void main(String[] args) throws Exception
-    {
+    public static void main(String[] args) throws Exception {
         Class.forName("com.mysql.jdbc.Driver");
         String bankname = (args.length > 0) ? args[0] : BANK;
-        if (bankname.equalsIgnoreCase("-h"))
-        {
+        if (bankname.equalsIgnoreCase("-h")) {
             System.out.println(USAGE);
             System.exit(1);
         }
-        try
-        {
+        try {
             Bank bankobj = new BankImpl();
-            try
-            {
+            try {
                 LocateRegistry.getRegistry(1099).list();
-            } catch (RemoteException e)
-            {
+            } catch (RemoteException e) {
                 LocateRegistry.createRegistry(1099);
             }
             Naming.rebind(bankname, bankobj);
             System.out.println(bankobj + " " + bankname + " is ready.");
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
