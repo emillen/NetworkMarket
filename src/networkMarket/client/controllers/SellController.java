@@ -39,7 +39,7 @@ public class SellController implements Controller {
     @FXML
     public void sell() {
         String name = nameField.getText();
-        double price = Double.parseDouble(priceField.getText());
+        Float price = Float.parseFloat(priceField.getText());
 
         SellService service = new SellService(name, price, user, market);
         service.setOnSucceeded(new SuccessHandler());
@@ -68,7 +68,6 @@ public class SellController implements Controller {
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
 
-            System.out.println(workerStateEvent.getSource().getException().getMessage());
 
             Stage stage = (Stage) nameField.getScene().getWindow();
             URL url = getClass().getResource("../views/loginView.fxml");
