@@ -16,7 +16,7 @@
             <items>
                 <Button fx:id="sellButton" mnemonicParsing="false" onAction="#switchToSellView" text="Sell an item"/>
                 <Button fx:id="wishButton" mnemonicParsing="false" onAction="#switchToMyItemsView"
-                        text="Wish for an item"/>
+                        text="My Items"/>
                 <Button mnemonicParsing="false" onAction="#updateView" text="UpdateView"/>
                 <MenuButton fx:id="accountMenu" mnemonicParsing="false" text="Account">
                     <items>
