@@ -55,8 +55,10 @@ class StoreServant extends UnicastRemoteObject implements Store {
     }
 
     @Override
-    public List<Item> getGetItemsFromBuyer(User buyer) throws RemoteException, UserException {
-        return null;
+    public List<Item> getGetItemsFromBuyer(User buyer) throws RemoteException, UserException, NoResultException {
+        EntityManager em = emf.createEntityManager();
+        return em.createNamedQuery("findItemsFromSeller", Item.class)
+                .setParameter("sellerName", buyer.getName()).getResultList();
     }
 
     @Override

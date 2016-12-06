@@ -19,7 +19,7 @@ public interface Store extends Remote {
 
     List<Item> getItemsFromSeller (User seller) throws RemoteException, UserException, NoResultException;
 
-    List<Item> getGetItemsFromBuyer (User buyer) throws RemoteException, UserException;
+    List<Item> getGetItemsFromBuyer (User buyer) throws RemoteException, UserException, NoResultException;
 
     Item addItem(String name, float price, User user) throws RemoteException, UserException;
 
