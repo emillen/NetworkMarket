@@ -5,12 +5,16 @@ import networkMarket.interfaces.Store;
 import networkMarket.interfaces.UserHandler;
 import networkMarket.interfaces.Wish;
 import networkMarket.marketPlace.exceptions.UserException;
+import se.kth.id2212.ex3.bankjpa.Bank;
+import se.kth.id2212.ex3.bankjpa.RejectedException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
+import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
@@ -22,8 +26,22 @@ class StoreServant extends UnicastRemoteObject implements Store {
 
     private UserHandler userHandler;
     private EntityManagerFactory emf;
+    private Bank bank;
+
 
     StoreServant(UserHandler userHandler) throws RemoteException {
+        try {
+            try {
+                LocateRegistry.getRegistry(1099).list();
+
+            } catch (RemoteException e) {
+                LocateRegistry.createRegistry(1099);
+                System.out.println(e.getMessage());
+            }
+            this.bank = (Bank) Naming.lookup("Nordea");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         this.emf = Persistence.createEntityManagerFactory("NetworkMarket");
         this.userHandler = userHandler;
     }
@@ -61,10 +79,14 @@ class StoreServant extends UnicastRemoteObject implements Store {
 
         checkUser(buyer);
 
+        bank.withdraw(buyer.getName(), item.getPrice());
+        bank.deposit(item.getSeller().getName(), item.getPrice());
         item.setbuyer(buyer);
 
         em.getTransaction().commit();
     }
+
+    private void
 
     @Override
     public void wishItem(String name, float price, User user) throws RemoteException, UserException {
