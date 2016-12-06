@@ -2,10 +2,10 @@ package networkMarket.client.services;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import networkMarket.interfaces.Item;
+import networkMarket.marketPlace.Item;
 import networkMarket.interfaces.MarketPlace;
 import networkMarket.interfaces.Store;
-import networkMarket.interfaces.User;
+import networkMarket.marketPlace.User;
 
 /**
  * Created by daseel on 11/22/16.
@@ -13,11 +13,11 @@ import networkMarket.interfaces.User;
 public class SellService extends Service<Item> {
 
     private String name;
-    private double price;
+    private float price;
     private User user;
     private MarketPlace market;
 
-    public SellService(String name, double price, User user, MarketPlace market) {
+    public SellService(String name, float price, User user, MarketPlace market) {
         this.name = name;
         this.price = price;
         this.user = user;

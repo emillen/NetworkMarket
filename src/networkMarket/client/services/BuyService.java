@@ -2,9 +2,11 @@ package networkMarket.client.services;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import networkMarket.interfaces.Item;
+import networkMarket.marketPlace.Item;
 import networkMarket.interfaces.MarketPlace;
-import networkMarket.interfaces.User;
+import networkMarket.marketPlace.User;
+
+import java.rmi.server.ExportException;
 
 /**
  * Created by daseel on 11/23/16.
@@ -27,7 +29,11 @@ public class BuyService extends Service<Void> {
             @Override
             protected Void call() throws Exception {
 
-                market.getStore().buyItem(item, user);
+                try{
+                    market.getStore().buyItem(item, user);
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
                 return null;
             }
         };
