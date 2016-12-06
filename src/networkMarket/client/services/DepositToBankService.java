@@ -2,10 +2,10 @@ package networkMarket.client.services;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import networkMarket.bank.exceptions.RejectedException;
-import networkMarket.interfaces.Account;
-import networkMarket.interfaces.Bank;
 import networkMarket.marketPlace.User;
+import se.kth.id2212.ex3.bankjpa.Account;
+import se.kth.id2212.ex3.bankjpa.Bank;
+import se.kth.id2212.ex3.bankjpa.RejectedException;
 
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
@@ -32,14 +32,11 @@ public class DepositToBankService extends Service<Void> {
                 LocateRegistry.getRegistry(1099).list();
                 Bank bank = (Bank) Naming.lookup("Nordea");
                 System.out.println("Bank is on");
-                Account account;
                 try {
-                    account = bank.newAccount(user.getName());
+                    bank.newAccount(user.getName());
                 } catch (RejectedException e) {
-                    account = bank.getAccount(user.getName());
+                    bank.deposit(user.getName(), toDeposit);
                 }
-
-                account.deposit(toDeposit);
 
                 return null;
             }
