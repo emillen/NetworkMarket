@@ -7,6 +7,7 @@ import networkMarket.interfaces.MarketPlace;
 import networkMarket.marketPlace.User;
 
 import javax.persistence.NoResultException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,7 +32,7 @@ public class GetItemsService extends Service<List<Item>> {
                 try {
                     return market.getStore().getItems(user);
                 } catch (NoResultException e) {
-                    return null;
+                    return new ArrayList<>();
                 }
             }
         };
