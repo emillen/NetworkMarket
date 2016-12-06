@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import networkMarket.client.services.AddBankService;
+import networkMarket.client.services.DepositToBankService;
 import networkMarket.client.views.ViewSwapper;
 import networkMarket.interfaces.MarketPlace;
 import networkMarket.marketPlace.User;
@@ -16,13 +16,13 @@ import java.net.URL;
 /**
  * Created by daseel on 11/23/16.
  */
-public class AddBankAccountController implements Controller {
+public class DepositToBankController implements Controller {
 
     private User user;
     private MarketPlace market;
 
     @FXML
-    TextField usernameField;
+    TextField amountField;
     @FXML
     Button button;
 
@@ -35,10 +35,10 @@ public class AddBankAccountController implements Controller {
     @FXML
     public void createAccount() {
 
-        if (usernameField.getText().equals(""))
+        if (amountField.getText().equals(""))
             return;
 
-        AddBankService service = new AddBankService(user, usernameField.getText());
+        DepositToBankService service = new DepositToBankService(user, Float.parseFloat(amountField.getText()));
         service.setOnSucceeded(new SuccessHandler());
         service.setOnFailed(new FailHandler());
         service.start();
@@ -47,7 +47,7 @@ public class AddBankAccountController implements Controller {
     private class SuccessHandler implements EventHandler<WorkerStateEvent> {
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
-            Stage stage = (Stage) usernameField.getScene().getWindow();
+            Stage stage = (Stage) amountField.getScene().getWindow();
             URL url = getClass().getResource("../views/storeView.fxml");
 
             ViewSwapper.swap(user, market, stage, url);
@@ -57,7 +57,7 @@ public class AddBankAccountController implements Controller {
     private class FailHandler implements EventHandler<WorkerStateEvent> {
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
-            Stage stage = (Stage) usernameField.getScene().getWindow();
+            Stage stage = (Stage) amountField.getScene().getWindow();
             URL url = getClass().getResource("../views/loginView.fxml");
 
             ViewSwapper.swap(user, market, stage, url);
