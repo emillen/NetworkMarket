@@ -44,6 +44,14 @@ public class MyItemsController implements Controller {
     }
 
 
+    @FXML
+    public void back() {
+
+        Stage stage = (Stage) soldItemList.getScene().getWindow();
+        URL url = getClass().getResource("../views/storeView.fxml");
+        ViewSwapper.swap(user, market, stage, url);
+    }
+
     private ObservableList<String> getSoldObservableList(List<Item> items) {
 
         ObservableList<String> list = FXCollections.observableArrayList();
