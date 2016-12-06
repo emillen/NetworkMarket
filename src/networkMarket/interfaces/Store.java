@@ -5,6 +5,7 @@ import networkMarket.marketPlace.User;
 import networkMarket.marketPlace.exceptions.UserException;
 import se.kth.id2212.ex3.bankjpa.RejectedException;
 
+import javax.persistence.NoResultException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
@@ -16,7 +17,7 @@ public interface Store extends Remote {
 
     List<Item> getItems(User user) throws RemoteException, UserException;
 
-    List<Item> getItemsFromSeller (User seller) throws RemoteException, UserException;
+    List<Item> getItemsFromSeller (User seller) throws RemoteException, UserException, NoResultException;
 
     List<Item> getGetItemsFromBuyer (User buyer) throws RemoteException, UserException;
 
