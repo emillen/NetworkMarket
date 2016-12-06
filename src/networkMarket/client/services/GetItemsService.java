@@ -2,10 +2,11 @@ package networkMarket.client.services;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import networkMarket.interfaces.Item;
+import networkMarket.marketPlace.Item;
 import networkMarket.interfaces.MarketPlace;
-import networkMarket.interfaces.User;
+import networkMarket.marketPlace.User;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 /**
@@ -27,7 +28,11 @@ public class GetItemsService extends Service<List<Item>> {
             @Override
             protected List<Item> call() throws Exception {
 
-                return market.getStore().getItems(user);
+                try {
+                    return market.getStore().getItems(user);
+                } catch (NoResultException e) {
+                    return null;
+                }
             }
         };
     }

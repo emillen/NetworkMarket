@@ -8,6 +8,7 @@ import networkMarket.marketPlace.exceptions.UserException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -28,7 +29,7 @@ class StoreServant extends UnicastRemoteObject implements Store {
     }
 
     @Override
-    public synchronized List<Item> getItems(User viewer) throws RemoteException, UserException {
+    public synchronized List<Item> getItems(User viewer) throws RemoteException, UserException, NoResultException {
         checkUser(viewer);
 
         EntityManager em = emf.createEntityManager();
