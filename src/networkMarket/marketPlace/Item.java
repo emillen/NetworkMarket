@@ -11,6 +11,14 @@ import java.io.Serializable;
         @NamedQuery(
                 name = "findItemWithID",
                 query = "SELECT item FROM Item item WHERE item.id = :id"
+        ),
+        @NamedQuery(
+                name = "findItemsFromSeller",
+                query = "SELECT item FROM Item item WHERE item.seller.name LIKE :sellerName"
+        ),
+        @NamedQuery(
+                name = "findItemsFromBuyer",
+                query = "SELECT item FROM Item item WHERE item.seller.name LIKE :buyerName"
         )
 })
 
@@ -40,7 +48,7 @@ public class Item implements Serializable {
     protected Item() {
     }
 
-    long getId(){
+    long getId() {
         return id;
     }
 
