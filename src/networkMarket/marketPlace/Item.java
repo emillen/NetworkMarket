@@ -6,7 +6,7 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(
                 name = "findAllItems",
-                query = "SELECT item FROM Item item"
+                query = "SELECT item FROM Item item WHERE item.buyer IS NULL"
         )
 })
 
