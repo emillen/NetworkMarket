@@ -3,7 +3,6 @@ package networkMarket.client.services;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import networkMarket.marketPlace.User;
-import se.kth.id2212.ex3.bankjpa.Account;
 import se.kth.id2212.ex3.bankjpa.Bank;
 import se.kth.id2212.ex3.bankjpa.RejectedException;
 
