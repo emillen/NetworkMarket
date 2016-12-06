@@ -1,6 +1,5 @@
 package networkMarket.marketPlace;
 
-import networkMarket.bank.exceptions.RejectedException;
 import networkMarket.interfaces.Store;
 import networkMarket.interfaces.UserHandler;
 import networkMarket.interfaces.Wish;
@@ -85,8 +84,6 @@ class StoreServant extends UnicastRemoteObject implements Store {
 
         em.getTransaction().commit();
     }
-
-    private void
 
     @Override
     public void wishItem(String name, float price, User user) throws RemoteException, UserException {
