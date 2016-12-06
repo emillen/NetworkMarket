@@ -11,7 +11,6 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import networkMarket.bank.exceptions.RejectedException;
 import networkMarket.client.services.BuyService;
 import networkMarket.client.services.GetItemsService;
 import networkMarket.client.services.UnregisterService;
@@ -19,8 +18,13 @@ import networkMarket.client.views.ViewSwapper;
 import networkMarket.interfaces.MarketPlace;
 import networkMarket.marketPlace.Item;
 import networkMarket.marketPlace.User;
+import se.kth.id2212.ex3.bankjpa.Bank;
+import se.kth.id2212.ex3.bankjpa.RejectedException;
 
 import java.net.URL;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,9 +82,7 @@ public class StoreController implements Controller {
     public void switchToSellView() {
 
         if (!hasBankAccount(user)) {
-            Stage stage = (Stage) sellButton.getScene().getWindow();
-            URL url = getClass().getResource("../views/depositToAccountView.fxml");
-            ViewSwapper.swap(user, market, stage, url);
+            switchToDepositToBankView();
             return;
         }
 
@@ -90,6 +92,12 @@ public class StoreController implements Controller {
         ViewSwapper.swap(user, market, stage, url);
     }
 
+    @FXML
+    private void switchToDepositToBankView() {
+        Stage stage = (Stage) itemList.getScene().getWindow();
+        URL url = getClass().getResource("../views/depositToBankView.fxml");
+        ViewSwapper.swap(user, market, stage, url);
+    }
 
     @FXML
     public void unregister() {
@@ -119,13 +127,9 @@ public class StoreController implements Controller {
     private ObservableList<String> getObservableList(List<Item> items) {
 
         ObservableList<String> list = FXCollections.observableArrayList();
-        /*for (Item i : items) {
-            try {
-                list.add(i.getName() + " " + i.getPrice() + "kr");
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        }*/
+        for (Item i : items) {
+            list.add(i.getName() + " " + i.getPrice() + "kr");
+        }
 
         return list;
     }
@@ -160,9 +164,8 @@ public class StoreController implements Controller {
             if (mouseEvent.getClickCount() == 2) {
 
                 if (!hasBankAccount(user)) {
-                    Stage stage = (Stage) itemList.getScene().getWindow();
-                    URL url = getClass().getResource("../views/depositToAccountView.fxml");
-                    ViewSwapper.swap(user, market, stage, url);
+                    switchToDepositToBankView();
+                    return;
                 }
                 int index = itemList.getSelectionModel().getSelectedIndices().get(0);
 
@@ -176,15 +179,16 @@ public class StoreController implements Controller {
 
     private boolean hasBankAccount(User user) {
 
-        boolean hasBankAccount = true;
+        try {
+            LocateRegistry.getRegistry(1099).list();
+            Bank bank = (Bank) Naming.lookup("Nordea");
+            return bank.findAccount(user.getName()) != null;
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
 
-        /*if (user.getBankAccount() == null) {
-            hasBankAccount = false;
-        }*/
-
-
-        return hasBankAccount;
     }
 
     private class BuyItemSuccess implements EventHandler<WorkerStateEvent> {
@@ -200,7 +204,6 @@ public class StoreController implements Controller {
         @Override
         public void handle(WorkerStateEvent workerStateEvent) {
 
-            System.out.println(workerStateEvent.getSource().getException().getMessage());
             if (workerStateEvent.getSource().getException() instanceof RejectedException) {
 
                 warningText.setText("Not enough cash dude");
@@ -217,4 +220,6 @@ public class StoreController implements Controller {
         URL url = getClass().getResource("../views/loginView.fxml");
         ViewSwapper.swap(null, market, stage, url);
     }
+
+
 }
