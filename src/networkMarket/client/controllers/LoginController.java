@@ -80,7 +80,6 @@ public class LoginController implements Controller {
         public void handle(WorkerStateEvent workerStateEvent) {
 
             User user = (User) workerStateEvent.getSource().getValue();
-            new CheckWishesService(user, market).start();
 
             Stage stage = (Stage) tabPane.getScene().getWindow();
             URL url = getClass().getResource("../views/storeView.fxml");
